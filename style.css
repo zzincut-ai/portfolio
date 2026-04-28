@@ -108,7 +108,7 @@ p { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 1.5rem; lin
 
 /* Header */
 .glass-header {
-    position: fixed;
+    position: absolute;
     top: 25px;
     left: 50%;
     transform: translateX(-50%);
@@ -587,4 +587,30 @@ footer {
     .glass-header { flex-direction: column; gap: 1rem; border-radius: 20px; padding: 1rem; }
     nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     nav a { margin: 0 0.5rem; font-size: 0.95rem; }
+}
+
+/* Floating Kakao Button */
+.floating-kakao {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #fae100;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+.floating-kakao img {
+    width: 32px;
+    height: 32px;
+}
+.floating-kakao:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
