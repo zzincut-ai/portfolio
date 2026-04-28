@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Portfolio Data
     const portfolioData = [
         // AI & CREATIVE
+        { category: "AI & CREATIVE", title: "오감을 깨우는 바삭함의 미학, 찐컷 치킨", description: "AI 기술로 구현한 입체적인 질감 표현을 통해 찰나의 바삭함을 감각적인 브랜딩 영상으로 완성했습니다.", url: "https://www.youtube.com/embed/h223PG5kE7g", type: "vertical" },
+        { category: "AI & CREATIVE", title: "비트를 입은 AI 런웨이, ZZINSINSA", description: "경쾌한 리듬과 AI의 유연한 무빙을 결합하여 브랜드의 트렌디한 에너지를 역동적인 한 장면으로 담아냈습니다.", url: "https://www.youtube.com/embed/xTuk_HBQJjk", type: "vertical" },
         { category: "AI & CREATIVE", title: "복싱 – 움직임을 담다", description: "복싱의 역동적인 움직임을 AI 영상으로 표현한 콘텐츠.", url: "https://www.youtube.com/embed/dUi91I1OpOA", type: "vertical" },
         { category: "AI & CREATIVE", title: "공허함 – 감정을 시각화하다", description: "공허함이라는 감정을 AI 영상으로 풀어내며 공감과 몰입을 이끌어냅니다.", url: "https://www.youtube.com/embed/H3WHmoiNJnU", type: "vertical" },
         { category: "AI & CREATIVE", title: "카페인중독 – 일상의 이야기", description: "카페인중독 커피 프랜차이즈 애니메이션 광고", url: "https://www.youtube.com/embed/pz540Fgjv70", type: "vertical" },
