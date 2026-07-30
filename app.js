@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "실제 촬영/편집",
                 "title": "우드팸 – 나무로 삶을 만드는 사람들",
                 "description": "우드팸의 작업 방식과 철학을 통해, 나무라는 재료로 삶을 만들어가는 과정을 깊이 있게 담은 인터뷰.",
-                "url": "assets/videos/[실제 촬영 편집] 우드팸 – 나무로 삶을 만드는 사람들.mp4",
+                "url": "https://res.cloudinary.com/demo/video/upload/dog.mp4",
                 "type": "horizontal"
         },
         {
@@ -213,6 +213,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return '';
     }
 
+    function getCloudinaryThumbnail(videoUrl, thumbnailTime = 5) {
+        // Cloudinary 비디오 URL을 썸네일 이미지 URL로 변환 (예: .mp4 -> .jpg 및 start offset 지정)
+        let url = videoUrl.replace(/\.mp4$/i, '.jpg');
+        if (url.includes('video/upload/')) {
+            url = url.replace('video/upload/', `video/upload/so_${thumbnailTime}/`);
+        }
+        return url;
+    }
+
     function createAndAppendCard(item, index) {
         const card = document.createElement('div');
         card.className = `portfolio-card neumorphic-card ${item.type}`;
@@ -220,29 +229,45 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'translateY(20px)';
         card.style.transition = 'opacity 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease';
         
-        // 유튜브 영상(유튜브 도메인 포함)인지 로컬 mp4 파일인지 자동 판별
-        const isLocalVideo = item.url.toLowerCase().endsWith('.mp4') || item.url.includes('assets/videos/');
+        // 영상 경로 자동 분류 (Cloudinary vs Local MP4 vs YouTube)
+        const isCloudinary = item.url.includes('res.cloudinary.com');
+        const isLocalVideo = !isCloudinary && (item.url.toLowerCase().endsWith('.mp4') || item.url.includes('assets/videos/'));
         
-        // 공백 및 대괄호가 포함된 한글 파일명을 브라우저가 안전하게 인식하도록 URL 인코딩 적용
-        const videoSrc = isLocalVideo ? encodeURI(item.url) : item.url;
+        // 한글 인코딩 적용
+        const videoSrc = (isLocalVideo || isCloudinary) ? encodeURI(item.url) : item.url;
         
-        // onerror 속성을 통한 즉각적인 카드 숨김 처리 및 다음 영상 로드 트리거
-        // 그리드 카드에서는 지저분한 컨트롤바 대신 프리미엄 플레이 버튼 오버레이를 노출합니다.
-        const videoTag = isLocalVideo
-            ? `<video playsinline preload="metadata" onerror="this.closest('.portfolio-card').remove(); if(window.portfolioLoadNext) window.portfolioLoadNext();"></video>
-               <div class="play-overlay">
-                   <svg viewBox="0 0 24 24" width="24" height="24">
-                       <path d="M8 5v14l11-7z"/>
-                   </svg>
-               </div>`
-            : `<div class="iframe-placeholder">
-                   <img src="https://img.youtube.com/vi/${getYoutubeId(videoSrc)}/hqdefault.jpg" alt="${item.title}" onerror="this.src='assets/images/default_video.jpg'">
-                   <div class="play-overlay">
-                       <svg viewBox="0 0 24 24" width="24" height="24">
-                           <path d="M8 5v14l11-7z"/>
-                       </svg>
-                   </div>
-               </div>`;
+        // 카드 그리드에서는 무거운 비디오 로딩을 방지하기 위해 썸네일(이미지)만 lazy load 방식으로 띄웁니다.
+        let videoTag = '';
+        if (isCloudinary) {
+            const thumbTime = item.thumbnailTime || 5;
+            const thumbnailUrl = getCloudinaryThumbnail(videoSrc, thumbTime);
+            videoTag = `<div class="iframe-placeholder">
+                           <img src="${thumbnailUrl}" alt="${item.title}" onerror="this.src='assets/images/default_video.jpg'">
+                           <div class="play-overlay">
+                               <svg viewBox="0 0 24 24" width="24" height="24">
+                                   <path d="M8 5v14l11-7z"/>
+                               </svg>
+                           </div>
+                       </div>`;
+        } else if (isLocalVideo) {
+            // 로컬 비디오 테스트를 위해 남겨두되, 404가 발생하면 오류 카드로 제거
+            videoTag = `<video playsinline preload="metadata" onerror="this.closest('.portfolio-card').remove(); if(window.portfolioLoadNext) window.portfolioLoadNext();"></video>
+                       <div class="play-overlay">
+                           <svg viewBox="0 0 24 24" width="24" height="24">
+                               <path d="M8 5v14l11-7z"/>
+                           </svg>
+                       </div>`;
+        } else {
+            // 유튜브 썸네일 활용
+            videoTag = `<div class="iframe-placeholder">
+                           <img src="https://img.youtube.com/vi/${getYoutubeId(videoSrc)}/hqdefault.jpg" alt="${item.title}" onerror="this.src='assets/images/default_video.jpg'">
+                           <div class="play-overlay">
+                               <svg viewBox="0 0 24 24" width="24" height="24">
+                                   <path d="M8 5v14l11-7z"/>
+                               </svg>
+                           </div>
+                       </div>`;
+        }
 
         card.innerHTML = `
             <div class="video-wrapper">
@@ -257,11 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         galleryContainer.appendChild(card);
 
-        // DOM에 카드를 추가한 직후에 src를 세팅하여 onerror가 마운트 완료 상태에서 정상 동작하게 합니다.
+        // DOM에 카드를 추가한 직후에 src를 세팅하여 로컬 테스트 비디오 onerror 대응
         if (isLocalVideo) {
             const videoEl = card.querySelector('video');
             if (videoEl) {
-                // 개별 영상별로 지정된 썸네일 시간(초)이 있으면 사용하고, 없으면 기본값인 5초를 사용합니다.
                 const thumbTime = item.thumbnailTime || 5;
                 videoEl.src = videoSrc + '#t=' + thumbTime;
             }
@@ -456,10 +480,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         modalVideoContainer.innerHTML = '';
         
-        const isLocalVideo = item.url.toLowerCase().endsWith('.mp4') || item.url.includes('assets/videos/');
-        const videoSrc = isLocalVideo ? encodeURI(item.url) : item.url;
+        const isCloudinary = item.url.includes('res.cloudinary.com');
+        const isLocalVideo = !isCloudinary && (item.url.toLowerCase().endsWith('.mp4') || item.url.includes('assets/videos/'));
+        const videoSrc = (isLocalVideo || isCloudinary) ? encodeURI(item.url) : item.url;
         
-        if (isLocalVideo) {
+        if (isLocalVideo || isCloudinary) {
             const video = document.createElement('video');
             video.src = videoSrc;
             video.controls = true;

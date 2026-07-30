@@ -811,3 +811,22 @@ footer {
         border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 }
+
+/* Iframe & Video Placeholder Styling */
+.iframe-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #000;
+    overflow: hidden;
+}
+.iframe-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.video-wrapper:hover .iframe-placeholder img {
+    transform: scale(1.05);
+}
