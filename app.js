@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "실제 촬영/편집",
                 "title": "우드팸 – 나무로 삶을 만드는 사람들",
                 "description": "우드팸의 작업 방식과 철학을 통해, 나무라는 재료로 삶을 만들어가는 과정을 깊이 있게 담은 인터뷰.",
-                "url": "https://res.cloudinary.com/demo/video/upload/dog.mp4",
+                "url": "https://www.youtube.com/embed/H0d84r-69X8",
                 "type": "horizontal"
         },
         {
