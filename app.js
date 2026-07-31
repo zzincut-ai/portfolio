@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const thumbTime = item.thumbnailTime || 5;
             const thumbnailUrl = getCloudinaryThumbnail(videoSrc, thumbTime);
             videoTag = `<div class="iframe-placeholder">
-                           <img src="${thumbnailUrl}" alt="${item.title}" onerror="this.src='assets/images/default_video.jpg'">
+                           <img src="${thumbnailUrl}" alt="${item.title}" onerror="this.src='assets/images/저용량.png'">
                            <div class="play-overlay">
                                <svg viewBox="0 0 24 24" width="24" height="24">
                                    <path d="M8 5v14l11-7z"/>
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // 유튜브 썸네일 활용
             videoTag = `<div class="iframe-placeholder">
-                           <img src="https://img.youtube.com/vi/${getYoutubeId(videoSrc)}/hqdefault.jpg" alt="${item.title}" onerror="this.src='assets/images/default_video.jpg'">
+                           <img src="https://img.youtube.com/vi/${getYoutubeId(videoSrc)}/hqdefault.jpg" alt="${item.title}" onerror="this.src='assets/images/저용량.png'">
                            <div class="play-overlay">
                                <svg viewBox="0 0 24 24" width="24" height="24">
                                    <path d="M8 5v14l11-7z"/>
