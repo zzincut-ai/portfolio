@@ -169,6 +169,7 @@ nav a:hover { color: #8475db; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px; /* Added gap to support icons cleanly for all buttons */
     height: 54px; /* Fixed height for absolute size uniformity */
     padding: 0 2.2rem;
     border-radius: 27px; /* Perfect pill shape */
