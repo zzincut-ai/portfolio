@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "패션 & 라이프스타일",
                 "title": "비트를 입은 AI 런웨이, ZZINSINSA",
                 "description": "경쾌한 리듬과 AI의 유연한 무빙을 결합하여 브랜드의 트렌디한 에너지를 역동적인 한 장면으로 담아냈습니다.",
-                "url": "assets/videos/runwaly.mp4",
+                "url": "https://www.youtube.com/embed/PnkucL3sZdM",
                 "type": "horizontal"
         },
         {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "패션 & 라이프스타일",
                 "title": "두려움 – 내면을 표현하는 영상",
                 "description": "두려움이라는 인간의 감정을 시각적으로 풀어낸 스토리형 AI 콘텐츠.",
-                "url": "assets/videos/[패션 & 라이프스타일] 두려움 – 내면을 표현하는 영상.mp4",
+                "url": "https://www.youtube.com/embed/C9QBfe0wI5E",
                 "type": "horizontal"
         },
         {
