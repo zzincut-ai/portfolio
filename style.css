@@ -568,6 +568,10 @@ h1 span {
     text-align: center;
     border-radius: 40px;
 }
+.about-section p strong {
+    color: #111111 !important; /* Standout deep dark color for highlighted words */
+    font-weight: 700 !important;
+}
 
 /* Footer */
 footer {
