@@ -525,6 +525,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 cropWrapper.appendChild(iframe);
                 modalVideoContainer.appendChild(cropWrapper);
             } else {
+                // 가로형 유튜브 영상: 상단 채널바와 로고 워터마크를 잘라내는 크롭 컨테이너 적용
+                const cropWrapper = document.createElement('div');
+                cropWrapper.className = 'modal-youtube-horizontal-crop-wrapper';
+                
                 const iframe = document.createElement('iframe');
                 const embedUrl = videoSrc.includes('?') 
                     ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
@@ -534,7 +538,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 iframe.frameBorder = "0";
                 iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
                 iframe.allowFullscreen = true;
-                modalVideoContainer.appendChild(iframe);
+                
+                cropWrapper.appendChild(iframe);
+                modalVideoContainer.appendChild(cropWrapper);
             }
         }
         

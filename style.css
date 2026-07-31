@@ -868,3 +868,21 @@ footer {
     transform: translateX(-50%);
     border: none;
 }
+
+/* Modal YouTube Horizontal Video Crop Styles */
+.modal-youtube-horizontal-crop-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+}
+.modal-youtube-horizontal-crop-wrapper iframe {
+    position: absolute;
+    top: -6%; /* Hide top bar */
+    left: -6%; /* Hide left icons */
+    width: 112%; /* Scale width */
+    height: 112%; /* Scale height */
+    border: none;
+    pointer-events: none;
+}
