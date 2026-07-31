@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "패션 & 라이프스타일",
                 "title": "병원 – 공간의 새로운 해석",
                 "description": "병원이라는 공간을 재구성한 AI 영상 콘텐츠.",
-                "url": "assets/videos/[패션 & 라이프스타일] 병원 – 공간의 새로운 해석.mp4",
+                "url": "https://www.youtube.com/embed/yzzviBXeTKg",
                 "type": "horizontal"
         },
         {
