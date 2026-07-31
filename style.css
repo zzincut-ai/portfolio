@@ -691,7 +691,7 @@ footer {
         box-sizing: border-box !important;
     }
     /* ALL button centered at the top spanning both columns, but keeping the same 160px width */
-    .filter-btn[data-filter="all"] {
+    .filter-btn[data-filter="ALL"] {
         grid-column: 1 / span 2 !important; /* Spans both columns to center at the top */
         width: 160px !important;
     }
