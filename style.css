@@ -636,27 +636,32 @@ footer {
         line-height: 1 !important;
     }
 
-    /* Scrollable Horizontal Pill Filter Bar */
+    /* Centered Pyramid Category Filters Layout */
     .category-filters {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        justify-content: flex-start !important;
-        padding: 0.5rem 1.5rem 1.5rem 1.5rem !important;
-        margin-left: -1.5rem !important;
-        margin-right: -1.5rem !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns */
         gap: 0.8rem !important;
-        width: calc(100% + 3rem) !important;
-        -webkit-overflow-scrolling: touch !important;
-        scrollbar-width: none !important;
-    }
-    .category-filters::-webkit-scrollbar {
-        display: none !important;
+        max-width: 360px !important; /* Elegant width for mobile screens */
+        margin: 0 auto 3rem auto !important;
+        justify-content: center !important;
+        justify-items: center !important;
+        align-items: center !important;
+        padding: 0 1rem !important;
     }
     .filter-btn {
+        width: 100% !important; /* Fit the grid cells */
+        max-width: 160px !important; /* Ensure uniform size for all buttons */
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0.6rem 0 !important; /* Clean height padding */
+        font-size: 0.85rem !important;
         flex-shrink: 0 !important;
-        padding: 0.6rem 1.3rem !important;
-        font-size: 0.9rem !important;
+        box-sizing: border-box !important;
+    }
+    /* ALL button centered at the top spanning both columns, but keeping the same 160px width */
+    .filter-btn[data-filter="all"] {
+        grid-column: 1 / span 2 !important; /* Spans both columns to center at the top */
+        width: 160px !important;
     }
 }
 
