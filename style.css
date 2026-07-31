@@ -158,36 +158,43 @@ nav a:hover { color: #8475db; }
 .btn-primary:hover { color: #fff; background: #000; }
 
 /* Buttons */
-.action-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+.action-buttons { 
+    display: flex; 
+    gap: 1.2rem; 
+    margin-top: 2rem; 
+    align-items: center; 
+}
+
+.btn-neumorphic, .btn-glass, .btn-kakao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 54px; /* Fixed height for absolute size uniformity */
+    padding: 0 2.2rem;
+    border-radius: 27px; /* Perfect pill shape */
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
 
 .btn-neumorphic {
-    display: inline-block;
-    padding: 1.1rem 2.5rem;
-    border-radius: 30px;
     background: var(--bg-color);
     color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
     box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
-    transition: all 0.3s ease;
 }
 .btn-neumorphic:hover {
     box-shadow: 2px 2px 6px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
-    transform: translateY(2px);
+    transform: translateY(-2px);
     color: #8475db;
 }
 
 .btn-glass {
-    display: inline-block;
-    padding: 1.1rem 2.5rem;
-    border-radius: 30px;
     background: rgba(255,255,255,0.3);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(12px);
     color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
 }
 .btn-glass:hover {
     background: rgba(255,255,255,0.8);
@@ -280,22 +287,14 @@ h1 span {
 }
 
 .btn-kakao {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 1.1rem 2.5rem;
-    border-radius: 30px;
     background: #fae100;
     color: #3c1e1e;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.05rem;
     box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
-    transition: all 0.3s ease;
+    gap: 8px;
 }
 .btn-kakao:hover {
     box-shadow: 2px 2px 6px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
-    transform: translateY(2px);
+    transform: translateY(-2px);
     background: #f0d700;
 }
 
