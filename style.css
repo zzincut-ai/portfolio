@@ -598,9 +598,66 @@ footer {
     .action-buttons { flex-direction: column; width: 100%; gap: 1rem; }
     .action-buttons a { width: 100%; text-align: center; justify-content: center; }
     .btn-glass { margin-left: 0; }
-    .glass-header { flex-direction: column; gap: 1rem; border-radius: 20px; padding: 1rem; }
-    nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    nav a { margin: 0 0.5rem; font-size: 0.95rem; }
+    
+    /* Mobile Header Layout Unification */
+    .glass-header {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.6rem 1.2rem !important;
+        border-radius: 30px !important;
+        top: 15px !important;
+        width: 90% !important;
+        max-width: 480px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    .glass-header .logo-container {
+        height: 40px !important;
+    }
+    .glass-header .logo-image {
+        max-height: 36px !important;
+        border-radius: 6px !important;
+    }
+    .glass-header nav {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0 !important;
+    }
+    .glass-header nav a:not(.btn-primary) {
+        display: none !important; /* Hide Home, Works, About links on mobile to prevent overlaps */
+    }
+    .glass-header nav a.btn-primary {
+        margin: 0 !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+        border-radius: 20px !important;
+        height: auto !important;
+        line-height: 1 !important;
+    }
+
+    /* Scrollable Horizontal Pill Filter Bar */
+    .category-filters {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        padding: 0.5rem 1.5rem 1.5rem 1.5rem !important;
+        margin-left: -1.5rem !important;
+        margin-right: -1.5rem !important;
+        gap: 0.8rem !important;
+        width: calc(100% + 3rem) !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+    .category-filters::-webkit-scrollbar {
+        display: none !important;
+    }
+    .filter-btn {
+        flex-shrink: 0 !important;
+        padding: 0.6rem 1.3rem !important;
+        font-size: 0.9rem !important;
+    }
 }
 
 /* Floating Kakao Button */
@@ -844,5 +901,51 @@ footer {
 }
 .portfolio-card.vertical:hover .iframe-placeholder img {
     transform: scale(1.40) !important; /* Smooth hover scaling starting from cropped base */
+}
+
+/* Responsive Line Break / Subtitle Controls */
+.desktop-br {
+    display: inline;
+}
+.mobile-br {
+    display: none;
+}
+@media (max-width: 768px) {
+    .desktop-br {
+        display: none;
+    }
+    .mobile-br {
+        display: block;
+    }
+}
+
+/* Beautiful custom Load More button */
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 2.5rem;
+    border-radius: 26px;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-load-more:hover {
+    box-shadow: 2px 2px 6px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
+    transform: translateY(-2px);
+    color: #8475db;
+}
+.btn-load-more .chevron-icon {
+    transition: transform 0.3s ease;
+}
+.btn-load-more:hover .chevron-icon {
+    transform: translateY(3px);
 }
 
