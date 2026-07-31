@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // JSON 동적 로드 함수 (CORS 에러 발생 시 백업 데이터로 대체)
     function loadPortfolioData() {
-        fetch('assets/videos.json')
+        fetch('assets/videos.json?v=' + new Date().getTime())
             .then(response => {
                 if (!response.ok) throw new Error("JSON load failed");
                 return response.json();
