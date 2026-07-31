@@ -505,6 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.playsinline = true;
             modalVideoContainer.appendChild(video);
         } else {
+            const ytId = getYoutubeId(videoSrc);
             const isVertical = item.type === 'vertical';
             if (isVertical) {
                 // 세로 쇼츠 유튜브 영상: 양옆 검은 여백 및 유튜브 각종 오버레이 UI를 잘라내는 크롭 컨테이너 적용
@@ -513,8 +514,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const iframe = document.createElement('iframe');
                 const embedUrl = videoSrc.includes('?') 
-                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3` 
-                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3`;
+                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
+                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}`;
                 iframe.src = embedUrl;
                 iframe.title = "YouTube video player";
                 iframe.frameBorder = "0";
@@ -526,8 +527,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const iframe = document.createElement('iframe');
                 const embedUrl = videoSrc.includes('?') 
-                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3` 
-                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3`;
+                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
+                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}`;
                 iframe.src = embedUrl;
                 iframe.title = "YouTube video player";
                 iframe.frameBorder = "0";
