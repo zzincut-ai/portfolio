@@ -238,7 +238,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 카드 그리드에서는 무거운 비디오 로딩을 방지하기 위해 썸네일(이미지)만 lazy load 방식으로 띄웁니다.
         let videoTag = '';
-        if (isCloudinary) {
+        if (item.thumbnail) {
+            // 사용자가 직접 등록한 고화질 커스텀 썸네일 사용
+            videoTag = `<div class="iframe-placeholder">
+                           <img src="${item.thumbnail}" alt="${item.title}" onerror="this.src='assets/images/저용량.png'">
+                           <div class="play-overlay">
+                               <svg viewBox="0 0 24 24" width="24" height="24">
+                                   <path d="M8 5v14l11-7z"/>
+                               </svg>
+                           </div>
+                       </div>`;
+        } else if (isCloudinary) {
             const thumbTime = item.thumbnailTime || 5;
             const thumbnailUrl = getCloudinaryThumbnail(videoSrc, thumbTime);
             videoTag = `<div class="iframe-placeholder">
