@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "로컬 브랜드 & B2B",
                 "title": "찐컷이 만들면 다르다",
                 "description": "AI 기술을 활용해 제작한 고화질 비디오 콘텐츠입니다.",
-                "url": "assets/videos/[로컬 브랜드 & B2B] 찐컷이 만들면 다르다.mp4",
+                "url": "https://www.youtube.com/embed/vmFhFigiCFg",
                 "type": "vertical",
                 "thumbnailTime": 14
         },
@@ -24,42 +24,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "F&B & 프랜차이즈",
                 "title": "오감을 깨우는 바삭함의 미학, 찐컷 치킨",
                 "description": "AI 기술로 구현한 입체적인 질감 표현을 통해 찰나의 바삭함을 감각적인 브랜딩 영상으로 완성했습니다.",
-                "url": "assets/videos/chicken.mp4",
+                "url": "https://www.youtube.com/embed/AaniZWiMDRI",
                 "type": "horizontal"
         },
         {
                 "category": "패션 & 라이프스타일",
                 "title": "복싱 – 움직임을 담다",
                 "description": "복싱의 역동적인 움직임을 AI 영상으로 표현한 콘텐츠.",
-                "url": "assets/videos/[패션 & 라이프스타일] 복싱 – 움직임을 담다.mp4",
+                "url": "https://www.youtube.com/embed/ZCTgYag2y2g",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "SIF – 차량 연료 절감기",
                 "description": "SIF가 추구하는 방향성을 인터뷰로 풀어냅니다.",
-                "url": "assets/videos/[실제 촬영 편집] SIF – 차량 연료 절감기.mp4",
+                "url": "https://www.youtube.com/embed/S8xi5a90hqo",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "우드팸 – 우트콤",
                 "description": "실제 촬영, 연출, 기획 및 편집 과정을 거쳐 제작된 우드팸(우드+시트콤) 브랜드 예능 콘텐츠입니다.",
-                "url": "assets/videos/[실제 촬영 편집] 우드팸 – 우트콤.mp4",
+                "url": "https://www.youtube.com/embed/ZXe3JHFrp5c",
                 "type": "vertical"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "우드팸 – 나무로 삶을 만드는 사람들",
                 "description": "우드팸의 작업 방식과 철학을 통해, 나무라는 재료로 삶을 만들어가는 과정을 깊이 있게 담은 인터뷰.",
-                "url": "https://www.youtube.com/embed/H0d84r-69X8",
+                "url": "https://www.youtube.com/embed/0OQb_pkeNL8",
                 "type": "horizontal"
         },
         {
                 "category": "로컬 브랜드 & B2B",
                 "title": "사천 – 또 다른 도시의 시선",
                 "description": "사천이라는 지역을 AI로 재해석한 감각적인 영상 콘텐츠.",
-                "url": "assets/videos/[로컬 브랜드 & B2B] 사천 – 또 다른 도시의 시선_v.mp4",
+                "url": "https://www.youtube.com/embed/02IVutCarqo",
                 "type": "vertical"
         },
         {
@@ -73,21 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "F&B & 프랜차이즈",
                 "title": "뉴욕 윤해운대갈비 – 전통의 재해석",
                 "description": "한복과 해외로 진출한 국내음식점의 만남",
-                "url": "assets/videos/[F&B & 프랜차이즈] 뉴욕 윤해운대갈비 – 전통의 재해석.mp4",
+                "url": "https://www.youtube.com/embed/QRIqJb1VJKs",
                 "type": "horizontal"
         },
         {
                 "category": "F&B & 프랜차이즈",
                 "title": "카페인중독 – 일상의 이야기",
                 "description": "카페인중독 커피 프랜차이즈 애니메이션 광고",
-                "url": "assets/videos/[F&B & 프랜차이즈] 카페인중독 – 일상의 이야기_v.mp4",
+                "url": "https://www.youtube.com/embed/LSGtgPO5qLo",
                 "type": "vertical"
         },
         {
                 "category": "로컬 브랜드 & B2B",
                 "title": "시흥 – 일상을 담은 도시 콘텐츠",
                 "description": "시흥의 일상적인 풍경을 AI 시각으로 풀어낸 영상.",
-                "url": "assets/videos/[로컬 브랜드 & B2B] 시흥 – 일상을 담은 도시 콘텐츠.mp4",
+                "url": "https://www.youtube.com/embed/1kGmVTIOMzs",
                 "type": "horizontal"
         },
         {
@@ -101,70 +101,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 "category": "패션 & 라이프스타일",
                 "title": "공허함 – 감정을 시각화하다",
                 "description": "공허함이라는 감정을 AI 영상으로 풀어내며 공감과 몰입을 이끌어냅니다.",
-                "url": "assets/videos/[패션 & 라이프스타일] 공허함 – 감정을 시각화하다_v.mp4",
+                "url": "https://www.youtube.com/embed/dk1-bqjfWL0",
                 "type": "vertical"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "부동산 소개– 실전 매물 브리핑 1편",
                 "description": "실제 매물과 현장 정보, 그리고 실전에서 바로 활용 가능한 인사이트를 전달합니다.",
-                "url": "assets/videos/[실제 촬영 편집] 부동산 소개– 실전 매물 브리핑 1편.mp4",
+                "url": "https://www.youtube.com/embed/mXvJRO3mj5U",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "부동산 소개– 실전 매물 브리핑 2편",
                 "description": "직접 현장을 방문해 전달하는 생생한 임장 스토리",
-                "url": "assets/videos/[실제 촬영 편집] 부동산 소개– 실전 매물 브리핑 2편.mp4",
+                "url": "https://www.youtube.com/embed/1qbjgIonn34",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "부동산 랭킹 – 한강뷰 아파트 TOP 3 분석",
                 "description": "데이터와 시장 흐름을 기반으로 현재 가장 주목받는 지역을 순위로 정리하고, 그 이유와 투자 포인트를 쉽게 풀어냅니다.",
-                "url": "assets/videos/[실제 촬영 편집] 부동산 랭킹 – 한강뷰 아파트 TOP 3 분석_v.mp4",
+                "url": "https://www.youtube.com/embed/9LU42TYFUK0",
                 "type": "vertical"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "부동산 임장 – 실제 매물의 가치 분석",
                 "description": "아파트, 상가, 토지 등 다양한 매물을 소개하며 가격, 입지, 미래 가치를 객관적으로 분석합니다.",
-                "url": "assets/videos/[실제 촬영 편집] 부동산 임장 – 실제 매물의 가치 분석.mp4",
+                "url": "https://www.youtube.com/embed/jhMpoiXu3ak",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "부동산 임장 – 직접 가서 본 진짜 현장",
                 "description": "직접 발로 뛰며 확인한 현장 분위기, 입지, 생활 환경을 현실적으로 전달하는 임장 콘텐츠.",
-                "url": "assets/videos/[실제 촬영 편집] 부동산 임장 – 직접 가서 본 진짜 현장_v.mp4",
+                "url": "https://www.youtube.com/embed/MhH5q3i7KHI",
                 "type": "vertical"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "나무창작소 – 손끝에서 시작되는 이야기",
                 "description": "나무창작소의 작업 공간과 카페로 변모하는 과정을 담은 인터뷰 콘텐츠.",
-                "url": "assets/videos/[실제 촬영 편집] 나무창작소 – 손끝에서 시작되는 이야기.mp4",
+                "url": "https://www.youtube.com/embed/Xu79amFVE34",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "무빙포스터",
                 "description": "AI 기술을 활용해 제작한 고화질 비디오 콘텐츠입니다.",
-                "url": "assets/videos/[실제 촬영 편집] 무빙포스터.mp4",
+                "url": "https://www.youtube.com/embed/1hoOzHBC8L4",
                 "type": "vertical"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "김소미 – 한 사람의 선택이 만든 길",
                 "description": "김소미의 삶과 선택, 그리고 지금의 위치에 오기까지의 과정 and 생각을 진솔하게 담은 인터뷰.",
-                "url": "assets/videos/[실제 촬영 편집] 김소미 – 한 사람의 선택이 만든 길.mp4",
+                "url": "https://www.youtube.com/embed/hWhLHxFVnDA",
                 "type": "horizontal"
         },
         {
                 "category": "실제 촬영/편집",
                 "title": "Face ID – 타이포그래피",
                 "description": "AI를 사용하지 않고 편집 Tool만 활용하여 제작",
-                "url": "assets/videos/[실제 촬영 편집] Face ID – 타이포그래피.mp4",
+                "url": "https://www.youtube.com/embed/vfbfMtzbboY",
                 "type": "horizontal"
         }
 ];
