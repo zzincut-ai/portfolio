@@ -508,8 +508,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const iframe = document.createElement('iframe');
             // 유튜브 자동 재생 및 브랜딩 바 제거 매개변수 주입
             const embedUrl = videoSrc.includes('?') 
-                ? `${videoSrc}&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3` 
-                : `${videoSrc}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3`;
+                ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3` 
+                : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3`;
             iframe.src = embedUrl;
             iframe.title = "YouTube video player";
             iframe.frameBorder = "0";
