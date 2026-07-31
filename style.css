@@ -830,3 +830,11 @@ footer {
 .video-wrapper:hover .iframe-placeholder img {
     transform: scale(1.05);
 }
+
+/* Shorts/Vertical video black bar crop zoom */
+.portfolio-card.vertical .iframe-placeholder img {
+    transform: scale(1.15); /* Zoom in 15% to hide the left/right black letterboxes */
+}
+.portfolio-card.vertical:hover .iframe-placeholder img {
+    transform: scale(1.20); /* Smooth hover scaling starting from cropped base */
+}

@@ -258,9 +258,12 @@ document.addEventListener('DOMContentLoaded', () => {
                            </svg>
                        </div>`;
         } else {
-            // 유튜브 썸네일 활용
+            // 유튜브 썸네일 활용 (최대 화질 maxresdefault.jpg 로딩 시도 후 단계별 fallback)
+            const ytId = getYoutubeId(videoSrc);
             videoTag = `<div class="iframe-placeholder">
-                           <img src="https://img.youtube.com/vi/${getYoutubeId(videoSrc)}/hqdefault.jpg" alt="${item.title}" onerror="this.src='assets/images/저용량.png'">
+                           <img src="https://img.youtube.com/vi/${ytId}/maxresdefault.jpg" 
+                                alt="${item.title}" 
+                                onerror="if(this.src.includes('maxresdefault')) { this.src='https://img.youtube.com/vi/${ytId}/sddefault.jpg'; } else if(this.src.includes('sddefault')) { this.src='https://img.youtube.com/vi/${ytId}/hqdefault.jpg'; } else { this.src='assets/images/저용량.png'; }">
                            <div class="play-overlay">
                                <svg viewBox="0 0 24 24" width="24" height="24">
                                    <path d="M8 5v14l11-7z"/>
@@ -493,8 +496,10 @@ document.addEventListener('DOMContentLoaded', () => {
             modalVideoContainer.appendChild(video);
         } else {
             const iframe = document.createElement('iframe');
-            // 유튜브 자동 재생 매개변수 주입
-            const embedUrl = videoSrc.includes('?') ? `${videoSrc}&autoplay=1` : `${videoSrc}?autoplay=1`;
+            // 유튜브 자동 재생 및 브랜딩 바 제거 매개변수 주입
+            const embedUrl = videoSrc.includes('?') 
+                ? `${videoSrc}&autoplay=1&modestbranding=1&rel=0&iv_load_policy=3` 
+                : `${videoSrc}?autoplay=1&modestbranding=1&rel=0&iv_load_policy=3`;
             iframe.src = embedUrl;
             iframe.title = "YouTube video player";
             iframe.frameBorder = "0";
