@@ -506,42 +506,17 @@ document.addEventListener('DOMContentLoaded', () => {
             modalVideoContainer.appendChild(video);
         } else {
             const ytId = getYoutubeId(videoSrc);
-            const isVertical = item.type === 'vertical';
-            if (isVertical) {
-                // 세로 쇼츠 유튜브 영상: 양옆 검은 여백 및 유튜브 각종 오버레이 UI를 잘라내는 크롭 컨테이너 적용
-                const cropWrapper = document.createElement('div');
-                cropWrapper.className = 'modal-youtube-crop-wrapper';
-                
-                const iframe = document.createElement('iframe');
-                const embedUrl = videoSrc.includes('?') 
-                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
-                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}`;
-                iframe.src = embedUrl;
-                iframe.title = "YouTube video player";
-                iframe.frameBorder = "0";
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                iframe.allowFullscreen = true;
-                
-                cropWrapper.appendChild(iframe);
-                modalVideoContainer.appendChild(cropWrapper);
-            } else {
-                // 가로형 유튜브 영상: 상단 채널바와 로고 워터마크를 잘라내는 크롭 컨테이너 적용
-                const cropWrapper = document.createElement('div');
-                cropWrapper.className = 'modal-youtube-horizontal-crop-wrapper';
-                
-                const iframe = document.createElement('iframe');
-                const embedUrl = videoSrc.includes('?') 
-                    ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
-                    : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}`;
-                iframe.src = embedUrl;
-                iframe.title = "YouTube video player";
-                iframe.frameBorder = "0";
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                iframe.allowFullscreen = true;
-                
-                cropWrapper.appendChild(iframe);
-                modalVideoContainer.appendChild(cropWrapper);
-            }
+            const iframe = document.createElement('iframe');
+            // 유튜브 자동 재생, 무한 루프 및 컨트롤 숨김 매개변수 주입
+            const embedUrl = videoSrc.includes('?') 
+                ? `${videoSrc}&autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}` 
+                : `${videoSrc}?autoplay=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist=${ytId}`;
+            iframe.src = embedUrl;
+            iframe.title = "YouTube video player";
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            modalVideoContainer.appendChild(iframe);
         }
         
         if (modalBadge) modalBadge.textContent = item.category;
