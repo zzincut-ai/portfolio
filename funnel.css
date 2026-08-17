@@ -1,0 +1,160 @@
+/* 찐컷 퍼널 사이트 v1 — 시네마틱 다크 + 스크롤 모션 */
+:root {
+    --bg: #0a0a0f;
+    --bg-soft: #12121a;
+    --ink: #f4f4f6;
+    --ink-dim: #9a9aa8;
+    --accent: #3b7bff;
+    --accent-soft: rgba(59, 123, 255, .14);
+    --radius: 18px;
+    --max: 1080px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+    line-height: 1.6;
+    word-break: keep-all;
+    overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+section { padding: 110px 24px; max-width: var(--max); margin: 0 auto; }
+
+/* 내비 */
+.nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 22px;
+    transition: background .3s, backdrop-filter .3s;
+}
+.nav.scrolled { background: rgba(10,10,15,.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.06); }
+.nav-logo img { height: 34px; width: auto; }
+.nav-links { display: flex; gap: 26px; font-size: 15px; color: var(--ink-dim); }
+.nav-links a:hover { color: var(--ink); }
+
+/* 버튼 */
+.btn {
+    display: inline-block; padding: 14px 28px; border-radius: 999px;
+    font-weight: 600; font-size: 16px; transition: transform .25s, background .25s, box-shadow .25s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 30px rgba(59,123,255,.35); }
+.btn-primary:hover { box-shadow: 0 12px 40px rgba(59,123,255,.5); }
+.btn-ghost { border: 1px solid rgba(255,255,255,.2); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-nav { padding: 10px 20px; font-size: 14px; background: var(--accent); color: #fff; }
+
+/* 히어로 */
+.hero {
+    min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+    padding-top: 140px; position: relative;
+}
+.eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .12em; font-size: 14px; margin-bottom: 22px; }
+.hero-title { font-size: clamp(52px, 11vw, 128px); line-height: 1.04; font-weight: 800; letter-spacing: -0.02em; }
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line span { display: block; transform: translateY(110%); animation: riseUp .9s cubic-bezier(.2,.7,.2,1) forwards; }
+.hero-title .line:nth-child(2) span { animation-delay: .12s; }
+@keyframes riseUp { to { transform: translateY(0); } }
+.hero-sub { margin-top: 30px; font-size: clamp(17px, 2.4vw, 21px); color: var(--ink-dim); }
+.hero-actions { margin-top: 38px; display: flex; gap: 14px; flex-wrap: wrap; }
+.scroll-hint { position: absolute; bottom: 28px; left: 50%; width: 1px; height: 56px; background: rgba(255,255,255,.15); overflow: hidden; }
+.scroll-hint span { position: absolute; top: -50%; left: 0; width: 100%; height: 50%; background: var(--ink); animation: drip 1.8s ease-in-out infinite; }
+@keyframes drip { to { top: 110%; } }
+
+/* 마키 */
+.marquee { max-width: none; padding: 0 0 40px; overflow: hidden; }
+.marquee-track { display: flex; gap: 16px; width: max-content; animation: slide 42s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.marquee-track a { flex: 0 0 auto; width: 300px; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; position: relative; }
+.marquee-track img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.marquee-track a:hover img { transform: scale(1.06); }
+
+/* 섹션 공통 */
+.section-title { font-size: clamp(32px, 5.6vw, 56px); font-weight: 800; line-height: 1.18; letter-spacing: -0.01em; margin-bottom: 26px; }
+.section-sub { color: var(--ink-dim); font-size: 17px; margin-bottom: 44px; }
+.section-sub a { color: var(--accent); }
+
+/* 공감 */
+.pain { text-align: left; }
+.pain-lines p { font-size: clamp(19px, 3vw, 26px); color: var(--ink-dim); margin-bottom: 18px; }
+.pain-lines .strong { color: var(--ink); font-weight: 700; }
+.pain-lines em { color: var(--accent); font-style: normal; }
+
+/* 작업 그리드 */
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.work-card { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/9; background: var(--bg-soft); }
+.work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+.work-card:hover img { transform: scale(1.07); }
+.work-card .meta {
+    position: absolute; inset: auto 0 0 0; padding: 40px 16px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,.82));
+    font-size: 14px; font-weight: 600; opacity: 0; transform: translateY(8px); transition: .35s;
+}
+.work-card:hover .meta { opacity: 1; transform: none; }
+.work-card .play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(.85);
+    width: 54px; height: 54px; border-radius: 50%; background: rgba(10,10,15,.65); backdrop-filter: blur(6px);
+    display: grid; place-items: center; opacity: 0; transition: .3s;
+}
+.work-card:hover .play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+.work-card .play::after { content: ""; border-style: solid; border-width: 9px 0 9px 15px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+.works-more { margin-top: 34px; text-align: center; }
+
+/* 방식 */
+.steps { list-style: none; border-top: 1px solid rgba(255,255,255,.08); }
+.steps li { display: grid; grid-template-columns: 220px 1fr; gap: 18px; padding: 26px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+.steps b { font-size: 19px; color: var(--ink); }
+.steps span { color: var(--ink-dim); font-size: 16px; }
+
+/* 오퍼 */
+.offer { text-align: left; }
+.offer-stack { list-style: none; margin: 10px 0 30px; }
+.offer-stack li {
+    font-size: clamp(20px, 3.4vw, 30px); font-weight: 700; padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.offer-stack li::before { content: "+"; color: var(--accent); font-weight: 800; margin-right: 14px; }
+.offer-stack li:first-child::before { content: "●"; font-size: .6em; vertical-align: middle; }
+.offer-note { color: var(--ink-dim); margin-bottom: 34px; }
+
+/* FAQ */
+.faq details { border-bottom: 1px solid rgba(255,255,255,.08); padding: 20px 0; }
+.faq summary { font-size: 18px; font-weight: 700; cursor: pointer; list-style: none; position: relative; padding-right: 30px; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; color: var(--accent); font-weight: 800; transition: transform .25s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { color: var(--ink-dim); margin-top: 12px; }
+
+/* 상담 폼 */
+.contact { text-align: center; }
+.form-wrap iframe { width: 100%; height: 720px; border: 0; border-radius: var(--radius); background: #fff; }
+.form-fallback { margin-top: 18px; }
+
+/* 푸터 */
+.footer { border-top: 1px solid rgba(255,255,255,.08); padding: 56px 24px; text-align: center; }
+.footer-brand img { height: 40px; margin: 0 auto 10px; }
+.footer-brand p { color: var(--ink-dim); font-size: 15px; }
+.footer-links { display: flex; gap: 22px; justify-content: center; margin: 24px 0; color: var(--ink-dim); font-size: 15px; }
+.footer-links a:hover { color: var(--ink); }
+.footer-legal { color: #55555f; font-size: 13px; line-height: 1.8; }
+
+/* 스크롤 리빌 */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.on { opacity: 1; transform: none; }
+
+/* 모바일 */
+@media (max-width: 720px) {
+    section { padding: 72px 20px; }
+    .nav-links { display: none; }
+    .works-grid { grid-template-columns: 1fr; }
+    .steps li { grid-template-columns: 1fr; gap: 6px; }
+    .marquee-track a { width: 220px; }
+    .form-wrap iframe { height: 640px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .hero-title .line span { animation: none; transition: none; opacity: 1; transform: none; }
+    .marquee-track { animation: none; }
+}
