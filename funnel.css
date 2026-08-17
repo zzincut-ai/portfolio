@@ -170,6 +170,7 @@ section { padding: 96px 24px; max-width: var(--max); margin: 0 auto; }
 
 /* 라이트박스 */
 .lightbox { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; }
+.lightbox[hidden] { display: none; }
 .lightbox-backdrop { position: absolute; inset: 0; background: rgba(12, 16, 28, .82); backdrop-filter: blur(6px); }
 .lightbox-body { position: relative; z-index: 1; width: min(92vw, 960px); }
 .lightbox-body.vert { width: min(92vw, 420px); }
