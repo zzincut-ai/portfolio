@@ -7,121 +7,149 @@
     <meta name="description" content="광고에 태울 영상이 필요한 대표님께. AI로 기획부터 제작, 광고 성과까지. 찐컷은 팔리는 영상만 만듭니다.">
     <link rel="icon" href="favicon.png?v=2" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-    <link rel="stylesheet" href="funnel.css?v=1">
+    <link rel="stylesheet" href="funnel.css?v=2">
 </head>
 <body>
+    <!-- 부드러운 배경 블롭 -->
+    <div class="bg" aria-hidden="true">
+        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    </div>
 
-    <!-- 상단 내비게이션 -->
+    <!-- 내비 -->
     <header class="nav" id="nav">
-        <a href="#top" class="nav-logo">
-            <img src="assets/images/회사로고_찐컷.png" alt="찐컷 ZZINCUT">
-        </a>
+        <a href="#top" class="nav-logo"><img src="assets/images/회사로고_찐컷.png" alt="찐컷 ZZINCUT"></a>
         <nav class="nav-links">
+            <a href="#free">무료</a>
             <a href="#works">작업</a>
+            <a href="#store">스토어</a>
             <a href="#process">방식</a>
-            <a href="#faq">FAQ</a>
         </nav>
-        <a href="#contact" class="btn btn-nav">상담 신청</a>
+        <a href="#contact" class="btn btn-primary btn-nav">상담 신청</a>
     </header>
 
     <main id="top">
 
         <!-- 1. 약속 -->
         <section class="hero">
-            <p class="eyebrow reveal">ZZINCUT — AI 영상 제작</p>
-            <h1 class="hero-title">
-                <span class="line"><span>팔리는 영상만</span></span>
-                <span class="line"><span>만듭니다</span></span>
-            </h1>
-            <p class="hero-sub reveal">광고에 태울 영상이 필요한 대표님께.<br>
-            기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
-            <div class="hero-actions reveal">
-                <a href="#contact" class="btn btn-primary">상담 신청하기</a>
-                <a href="#works" class="btn btn-ghost">작업 보기</a>
+            <div class="hero-copy">
+                <p class="chip reveal">AI 영상 제작 · 광고 성과까지</p>
+                <h1 class="hero-title">
+                    <span class="line"><span>팔리는 영상만</span></span>
+                    <span class="line"><span>만듭니다</span></span>
+                </h1>
+                <p class="hero-sub reveal">광고에 태울 영상이 필요한 대표님께.<br>
+                기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
+                <div class="hero-actions reveal">
+                    <a href="#contact" class="btn btn-primary">상담 신청하기</a>
+                    <a href="#free" class="btn btn-soft">무료로 시작하기</a>
+                </div>
             </div>
-            <div class="scroll-hint" aria-hidden="true"><span></span></div>
+            <div class="hero-cards reveal" aria-hidden="true">
+                <!-- funnel.js: 쇼츠 3장 틸트 카드 -->
+            </div>
         </section>
 
-        <!-- 2. 증거 마키 -->
+        <!-- 2. 쇼츠 마키 (구경거리) -->
         <section class="marquee" aria-label="작업 미리보기">
-            <div class="marquee-track" id="marqueeTrack">
-                <!-- funnel.js가 썸네일을 채운다 -->
+            <div class="marquee-track" id="marqueeTrack"></div>
+        </section>
+
+        <!-- 3. 무료 코너 (퍼널 입구) -->
+        <section class="free" id="free">
+            <h2 class="section-title reveal">무료로 시작하세요</h2>
+            <p class="section-sub reveal">일단 받아보고, 좋으면 그때 이야기해요.</p>
+            <div class="card-row">
+                <article class="offer-card reveal">
+                    <span class="tag tag-free">무료</span>
+                    <h3>내 광고 영상 무료 진단</h3>
+                    <p>지금 돌리는 광고 소재, 뭐가 문제인지 짚어드려요.<br>링크만 남기면 3일 안에 회신해요.</p>
+                    <a class="btn btn-primary" href="https://forms.gle/ELxvLQjXRZmuGakN8" target="_blank" rel="noopener">진단 신청하기</a>
+                </article>
+                <article class="offer-card reveal">
+                    <span class="tag tag-soon">준비 중</span>
+                    <h3>전자책 — 유튜브로 파는 법</h3>
+                    <p>138개 채널을 뜯어보며 정리한 책을 만들고 있어요.<br>메일을 남기면 나오는 날 가장 먼저 보내드려요.</p>
+                    <a class="btn btn-soft" href="mailto:zzincut@gmail.com?subject=전자책 출시 알림 신청">출시 알림 받기</a>
+                </article>
             </div>
         </section>
 
-        <!-- 3. 공감 -->
-        <section class="pain">
-            <h2 class="section-title reveal">광고비는 나가는데,<br>왜 안 팔릴까요</h2>
-            <div class="pain-lines">
-                <p class="reveal">소재가 밋밋하면 광고비가 그대로 새요.</p>
-                <p class="reveal">업체에 맡기면 비싸고, 오래 걸리고, 수정은 전쟁이고요.</p>
-                <p class="reveal strong">찐컷은 팔리는 걸 만들고 — <em>팔리는지까지 봅니다.</em></p>
-            </div>
-        </section>
-
-        <!-- 4. 작업 -->
+        <!-- 4. 작업 갤러리 (카테고리 + 페이지 안 재생) -->
         <section class="works" id="works">
             <h2 class="section-title reveal">보여드리는 게 빠르겠죠</h2>
-            <p class="section-sub reveal">전부 AI로 기획·연출·제작한 영상이에요. 눌러서 확인해보세요.</p>
-            <div class="works-grid" id="worksGrid"><!-- funnel.js --></div>
+            <p class="section-sub reveal">전부 AI로 기획·연출·제작했어요. 누르면 이 자리에서 바로 재생돼요.</p>
+            <div class="filter reveal" id="filter">
+                <button class="chip-btn on" data-cat="all">전체</button>
+                <button class="chip-btn" data-cat="shorts">쇼츠</button>
+                <button class="chip-btn" data-cat="fnb">F&amp;B·프랜차이즈</button>
+                <button class="chip-btn" data-cat="b2b">로컬·B2B</button>
+                <button class="chip-btn" data-cat="style">패션·라이프</button>
+                <button class="chip-btn" data-cat="art">아트·모션</button>
+            </div>
+            <div class="works-grid" id="worksGrid"></div>
             <div class="works-more reveal">
-                <a href="https://www.youtube.com/@zzincut" target="_blank" rel="noopener" class="btn btn-ghost">유튜브에서 전부 보기</a>
+                <a href="https://www.youtube.com/@zzincut" target="_blank" rel="noopener" class="btn btn-soft">유튜브 채널 구경하기</a>
             </div>
         </section>
 
-        <!-- 5. 방식 -->
+        <!-- 5. 찐컷 노트 (정보) -->
+        <section class="notes">
+            <h2 class="section-title reveal">찐컷 노트</h2>
+            <p class="section-sub reveal">수천 편을 만들며 몸으로 배운 것들이에요.</p>
+            <div class="card-row three">
+                <article class="note-card reveal">
+                    <b>15초 광고의 공식</b>
+                    <p>진지한 도입 → 반전(음악이 뚝 끊기는 순간) → 제품 등장 → 한 줄 슬로건. 웃기려고 시작하면 안 웃겨요.</p>
+                </article>
+                <article class="note-card reveal">
+                    <b>CTA는 하나만</b>
+                    <p>"팔로우도 하고 링크도 눌러줘"는 아무도 안 눌러요. 영상 하나에 행동 하나. 그래야 숫자가 움직여요.</p>
+                </article>
+                <article class="note-card reveal">
+                    <b>첫 3초에 다 걸어요</b>
+                    <p>광고는 스킵 버튼과의 싸움이에요. 설명은 뒤로 미루고, 장면부터 보여주세요. "이게 뭐지?"가 최고의 훅이에요.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 6. 방식 -->
         <section class="process" id="process">
             <h2 class="section-title reveal">일은 이렇게 진행돼요</h2>
             <ol class="steps">
-                <li class="reveal"><b>01 · 상담 신청</b><span>폼 작성 3분. 광고 계획과 예산을 먼저 여쭤봐요</span></li>
-                <li class="reveal"><b>02 · 무료 상담</b><span>방향과 견적을 확정해요. 안 맞으면 여기서 멈춰도 돼요</span></li>
-                <li class="reveal"><b>03 · 기획</b><span>콘티를 먼저 보여드리고, 확인 후에 제작에 들어가요</span></li>
-                <li class="reveal"><b>04 · 제작</b><span>AI라서 빨라요. 첫 미팅 다음 날 첫 영상을 보낸 적도 있어요</span></li>
-                <li class="reveal"><b>05 · 납품 + 성과</b><span>영상만 드리고 끝이 아니라, 광고 성과를 같이 봐요</span></li>
+                <li class="reveal"><i>01</i><div><b>상담 신청</b><span>폼 작성 3분. 광고 계획과 예산을 먼저 여쭤봐요</span></div></li>
+                <li class="reveal"><i>02</i><div><b>무료 상담</b><span>방향과 견적을 확정해요. 안 맞으면 여기서 멈춰도 돼요</span></div></li>
+                <li class="reveal"><i>03</i><div><b>기획</b><span>콘티를 먼저 보여드리고, 확인 후에 제작에 들어가요</span></div></li>
+                <li class="reveal"><i>04</i><div><b>제작</b><span>AI라서 빨라요. 첫 미팅 다음 날 첫 영상을 보낸 적도 있어요</span></div></li>
+                <li class="reveal"><i>05</i><div><b>납품 + 성과</b><span>영상만 드리고 끝이 아니라, 광고 성과를 같이 봐요</span></div></li>
             </ol>
-        </section>
-
-        <!-- 6. 오퍼 -->
-        <section class="offer">
-            <h2 class="section-title reveal">영상 한 편만<br>드리지 않아요</h2>
-            <ul class="offer-stack">
-                <li class="reveal">광고용 본편 영상</li>
-                <li class="reveal">채널 맞춤 규격 (쇼츠 9:16 · 피드 4:5)</li>
-                <li class="reveal">썸네일</li>
-                <li class="reveal">광고 카피</li>
-                <li class="reveal">성과 리포트</li>
-            </ul>
-            <p class="offer-note reveal">가격은 프로젝트 범위에 따라 상담에서 확정해요.<br>
-            광고를 집행할 계획이 있는 대표님과 가장 잘 맞아요.</p>
-            <div class="reveal"><a href="#contact" class="btn btn-primary">상담 신청하기</a></div>
+            <div class="stack-band reveal" id="store">
+                <h3>영상 한 편만 드리지 않아요</h3>
+                <p>광고용 본편 + 채널 맞춤 규격(9:16 · 4:5) + 썸네일 + 광고 카피 + 성과 리포트.<br>
+                가격은 프로젝트 범위에 따라 상담에서 확정해요. 광고를 집행할 계획이 있는 대표님과 가장 잘 맞아요.</p>
+                <a href="#contact" class="btn btn-primary">상담 신청하기</a>
+            </div>
         </section>
 
         <!-- 7. FAQ -->
         <section class="faq" id="faq">
             <h2 class="section-title reveal">자주 묻는 질문</h2>
-            <details class="reveal">
-                <summary>제작 기간은 얼마나 걸리나요?</summary>
-                <p>구성에 따라 다르지만 편당 며칠 단위로 움직여요. 물량과 일정은 상담에서 확정해요.</p>
-            </details>
-            <details class="reveal">
-                <summary>수정은 몇 번까지 되나요?</summary>
-                <p>편당 1회 무상 수정이 기본이에요. 오탈자 같은 단순 수정은 횟수에 넣지 않아요.</p>
-            </details>
-            <details class="reveal">
-                <summary>줄 수 있는 자료가 거의 없는데요.</summary>
-                <p>로고와 제품 정보만 있어도 시작할 수 있어요. 자료가 많을수록 퀄리티는 올라가요.</p>
-            </details>
+            <details class="reveal"><summary>제작 기간은 얼마나 걸리나요?</summary>
+                <p>구성에 따라 다르지만 편당 며칠 단위로 움직여요. 물량과 일정은 상담에서 확정해요.</p></details>
+            <details class="reveal"><summary>수정은 몇 번까지 되나요?</summary>
+                <p>편당 1회 무상 수정이 기본이에요. 오탈자 같은 단순 수정은 횟수에 넣지 않아요.</p></details>
+            <details class="reveal"><summary>줄 수 있는 자료가 거의 없는데요.</summary>
+                <p>로고와 제품 정보만 있어도 시작할 수 있어요. 자료가 많을수록 퀄리티는 올라가요.</p></details>
         </section>
 
-        <!-- 8. 상담 신청 -->
+        <!-- 8. 상담 -->
         <section class="contact" id="contact">
             <h2 class="section-title reveal">상담 신청</h2>
-            <p class="section-sub reveal">아래 폼을 남겨주시면 검토 후 3일 안에 연락드려요.<br>
+            <p class="section-sub reveal">폼을 남겨주시면 검토 후 3일 안에 연락드려요.<br>
             메일이 편하시면 <a href="mailto:zzincut@gmail.com">zzincut@gmail.com</a> 으로 주셔도 돼요.</p>
             <div class="form-wrap reveal">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScI6tUpXeY5mxHbeXp79N9IcTDS84xH9oD_nNPBa_Au6Ka01Q/viewform?embedded=true"
                         loading="lazy" title="찐컷 상담 신청 폼">불러오는 중…</iframe>
-                <a class="btn btn-ghost form-fallback" href="https://forms.gle/ELxvLQjXRZmuGakN8" target="_blank" rel="noopener">폼이 안 보이면 새 창에서 열기</a>
+                <a class="btn btn-soft form-fallback" href="https://forms.gle/ELxvLQjXRZmuGakN8" target="_blank" rel="noopener">폼이 안 보이면 새 창에서 열기</a>
             </div>
         </section>
     </main>
@@ -141,6 +169,15 @@
         대구광역시 북구 호암로 51, 4층 (대구창조경제혁신센터) · zzincut@gmail.com</p>
     </footer>
 
-    <script src="funnel.js?v=1"></script>
+    <!-- 라이트박스 (페이지 안 재생) -->
+    <div class="lightbox" id="lightbox" hidden>
+        <div class="lightbox-backdrop" id="lbClose1"></div>
+        <div class="lightbox-body" id="lbBody">
+            <button class="lightbox-close" id="lbClose2" aria-label="닫기">×</button>
+            <div class="lightbox-frame" id="lbFrame"></div>
+        </div>
+    </div>
+
+    <script src="funnel.js?v=2"></script>
 </body>
 </html>
