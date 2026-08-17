@@ -3,11 +3,9 @@
 // 작업 목록 — vert: 세로(쇼츠), cat: 카테고리
 const WORKS = [
     { id: "AaniZWiMDRI", t: "찐컷 치킨 — 오감을 깨우는 바삭함", cat: "fnb" },
-    { id: "GtJcobtVpmE", t: "찐컷 치킨", cat: "fnb" },
     { id: "QRIqJb1VJKs", t: "뉴욕 윤해운대갈비 — 전통의 재해석", cat: "fnb" },
     { id: "LSGtgPO5qLo", t: "카페인중독 — 일상의 이야기", cat: "fnb", vert: true },
     { id: "PnkucL3sZdM", t: "ZZINSINSA — 비트를 입은 AI 런웨이", cat: "style" },
-    { id: "IOpspgIYEuU", t: "찐신사", cat: "style" },
     { id: "ZCTgYag2y2g", t: "복싱 — 움직임을 담다", cat: "style" },
     { id: "yzzviBXeTKg", t: "병원 — 공간의 새로운 해석", cat: "style" },
     { id: "vmFhFigiCFg", t: "찐컷이 만들면 다르다", cat: "b2b", vert: true },
@@ -53,31 +51,48 @@ document.getElementById("lbClose2").addEventListener("click", closeVideo);
 addEventListener("keydown", (e) => { if (e.key === "Escape" && !lb.hidden) closeVideo(); });
 lb.hidden = true;
 
-// ── 작업 갤러리 + 카테고리 필터 ──────────────────────────
+// ── 작업 갤러리 — 규격화된 그리드 + 더보기 ──────────────
+// 카드 크기는 통일한다(가로 16:9 / 쇼츠 필터에서만 9:16).
+// 처음 6개만 보여주고 「더보기」로 6개씩 연다 — 페이지가 길면 안 읽는다.
 const grid = document.getElementById("worksGrid");
-function renderGrid(cat) {
-    grid.innerHTML = "";
-    WORKS.filter((w) => cat === "all" || (cat === "shorts" ? w.vert : w.cat === cat))
-        .forEach((w) => {
-            const b = document.createElement("button");
-            b.className = "work-card" + (w.vert ? " vert" : "");
-            b.type = "button";
-            const img = document.createElement("img");
-            img.src = thumb(w); img.alt = w.t; img.loading = "lazy";
-            img.onerror = () => fallback(img, w);
-            b.appendChild(img);
-            b.insertAdjacentHTML("beforeend", `<span class="play" aria-hidden="true"></span><span class="meta">${w.t}</span>`);
-            b.addEventListener("click", () => openVideo(w));
-            grid.appendChild(b);
-        });
+const moreBtn = document.getElementById("moreBtn");
+const PAGE = 6;
+let curCat = "all";
+let shown = PAGE;
+
+function pool(cat) {
+    if (cat === "shorts") return WORKS.filter((w) => w.vert);
+    if (cat === "all") return WORKS.filter((w) => !w.vert);   // 전체 탭은 가로 규격만 — 쇼츠는 쇼츠 탭·마키에
+    return WORKS.filter((w) => w.cat === cat && !w.vert);
 }
-renderGrid("all");
+function renderGrid() {
+    const list = pool(curCat);
+    grid.classList.toggle("shorts-mode", curCat === "shorts");
+    grid.innerHTML = "";
+    list.slice(0, shown).forEach((w) => {
+        const b = document.createElement("button");
+        b.className = "work-card" + (w.vert ? " vert" : "");
+        b.type = "button";
+        const img = document.createElement("img");
+        img.src = thumb(w); img.alt = w.t; img.loading = "lazy";
+        img.onerror = () => fallback(img, w);
+        b.appendChild(img);
+        b.insertAdjacentHTML("beforeend", `<span class="play" aria-hidden="true"></span><span class="meta">${w.t}</span>`);
+        b.addEventListener("click", () => openVideo(w));
+        grid.appendChild(b);
+    });
+    moreBtn.hidden = list.length <= shown;
+}
+renderGrid();
+moreBtn.addEventListener("click", () => { shown += PAGE; renderGrid(); });
 document.getElementById("filter").addEventListener("click", (e) => {
     const btn = e.target.closest(".chip-btn");
     if (!btn) return;
     document.querySelectorAll(".chip-btn").forEach((c) => c.classList.remove("on"));
     btn.classList.add("on");
-    renderGrid(btn.dataset.cat);
+    curCat = btn.dataset.cat;
+    shown = PAGE;
+    renderGrid();
 });
 
 // ── 히어로 틸트 카드 (마우스 반응) ──────────────────────

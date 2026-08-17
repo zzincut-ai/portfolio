@@ -111,12 +111,13 @@ section { padding: 96px 24px; max-width: var(--max); margin: 0 auto; }
 }
 .chip-btn:hover { border-color: var(--accent); color: var(--accent-deep); }
 .chip-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
-.works-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 10px; gap: 16px; grid-auto-flow: dense; }
+.works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.works-grid.shorts-mode { grid-template-columns: repeat(4, 1fr); }
 .work-card {
     position: relative; border: 0; padding: 0; cursor: pointer; border-radius: 18px; overflow: hidden;
-    background: #dde5f5; box-shadow: var(--shadow); grid-row: span 16; transition: transform .3s, box-shadow .3s; text-align: left;
+    background: #dde5f5; box-shadow: var(--shadow); aspect-ratio: 16/9; transition: transform .3s, box-shadow .3s; text-align: left;
 }
-.work-card.vert { grid-row: span 28; }
+.works-grid.shorts-mode .work-card { aspect-ratio: 9/16; }
 .work-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 .work-card img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
 .work-card .meta {
