@@ -1,4 +1,4 @@
-// 찐컷 퍼널 사이트 v3 — 단일 정본 (외부 라이브러리 없음)
+// 찐컷 퍼널 사이트 v4 — 5화면 SPA (외부 라이브러리 없음)
 // 갤러리 분류·순서·규격(전부 16:9)은 대표가 만든 원본(app.js)을 그대로 이식했다.
 
 const WORKS = [
@@ -26,10 +26,135 @@ const WORKS = [
     { id: "hWhLHxFVnDA", t: "김소미 – 한 사람의 선택이 만든 길", cat: "실제 촬영/편집" },
     { id: "vfbfMtzbboY", t: "Face ID – 타이포그래피", cat: "실제 촬영/편집" },
 ];
-// 그리드는 전부 16:9 규격(대표 원안). 세로 썸네일은 마키에서만.
 const thumb = (w) => `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`;
 const thumbVert = (w) => `https://i.ytimg.com/vi/${w.id}/oar2.jpg`;
 const fallback = (img, w) => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`; };
+
+// ── 화면 라우터: 옆으로 슬라이드 ───────────────────────
+const VIEW_ORDER = ["home", "works", "think", "store", "contact"];
+const ALIAS = { top: "home", free: "store", faq: "contact", process: "home", ebook: "store", diag: "store" };
+const viewsEl = document.getElementById("views");
+const viewEls = Array.from(document.querySelectorAll(".view"));
+let curView = "home";
+function goto(name) {
+    name = ALIAS[name] || name;
+    if (!VIEW_ORDER.includes(name)) name = "home";
+    const i = VIEW_ORDER.indexOf(name);
+    curView = name;
+    viewsEl.style.transform = `translateX(${-i * 100}vw)`;
+    document.querySelectorAll("[data-view]").forEach((a) => {
+        if (a.classList.contains("btn")) return;
+        a.classList.toggle("on", a.dataset.view === name && a.closest(".nav-links"));
+    });
+    updateNavShadow();
+    updateDotGrid();
+}
+function route() { goto((location.hash || "#home").replace(/^#\/?/, "")); }
+document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-view]");
+    if (!a) return;
+    e.preventDefault();
+    const name = ALIAS[a.dataset.view] || a.dataset.view;
+    if (name === curView) {
+        viewEls[VIEW_ORDER.indexOf(name)].scrollTo({ top: 0, behavior: "smooth" });
+    }
+    location.hash = name;
+});
+addEventListener("hashchange", route);
+
+// ── 내비 그림자: 현재 화면의 스크롤 기준 ───────────────
+const nav = document.getElementById("nav");
+function updateNavShadow() {
+    const v = viewEls[VIEW_ORDER.indexOf(curView)];
+    nav.classList.toggle("scrolled", v.scrollTop > 40);
+}
+viewEls.forEach((v) => v.addEventListener("scroll", updateNavShadow, { passive: true }));
+
+// ── 홈 히어로: 영상 로테이션 (5초마다 교체) ────────────
+const stage = document.getElementById("loopStage");
+if (stage) {
+    const vids = Array.from(stage.querySelectorAll("video"));
+    let vi = 0;
+    vids.forEach((v) => v.play().catch(() => {}));
+    vids[0].classList.add("live");
+    setInterval(() => {
+        vids[vi].classList.remove("live");
+        vi = (vi + 1) % vids.length;
+        vids[vi].play().catch(() => {});
+        vids[vi].classList.add("live");
+    }, 5000);
+}
+
+// ── 커서 반응 도트 그리드 (홈 + 데스크톱에서만) ────────
+const dotCanvas = document.getElementById("dotgrid");
+const fineDesktop = matchMedia("(pointer: fine) and (min-width: 901px)").matches
+    && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+let dotRunning = false;
+if (dotCanvas && fineDesktop) {
+    const ctx = dotCanvas.getContext("2d");
+    const GAP = 26, R_BASE = 1.4, RADIUS = 150;
+    let W, H, dots = [];
+    const mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999 };
+    function buildGrid() {
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        W = innerWidth; H = innerHeight;
+        dotCanvas.width = W * dpr; dotCanvas.height = H * dpr;
+        dotCanvas.style.width = W + "px"; dotCanvas.style.height = H + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        dots = [];
+        for (let y = GAP / 2; y < H; y += GAP)
+            for (let x = GAP / 2; x < W; x += GAP) dots.push({ x, y });
+    }
+    buildGrid();
+    addEventListener("resize", buildGrid);
+    addEventListener("mousemove", (e) => { mouse.tx = e.clientX; mouse.ty = e.clientY; });
+    function frame() {
+        if (!dotRunning) return;
+        mouse.x += (mouse.tx - mouse.x) * 0.16;
+        mouse.y += (mouse.ty - mouse.y) * 0.16;
+        ctx.clearRect(0, 0, W, H);
+        for (const d of dots) {
+            const dx = d.x - mouse.x, dy = d.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            let ox = 0, oy = 0, a = 0.2, r = R_BASE;
+            if (dist < RADIUS) {
+                const f = (1 - dist / RADIUS);
+                ox = (dx / (dist || 1)) * f * 14;
+                oy = (dy / (dist || 1)) * f * 14;
+                a = 0.2 + f * 0.5;
+                r = R_BASE + f * 1.3;
+            }
+            ctx.beginPath();
+            ctx.arc(d.x + ox, d.y + oy, r, 0, 6.2832);
+            ctx.fillStyle = `rgba(59, 123, 255, ${a})`;
+            ctx.fill();
+        }
+        requestAnimationFrame(frame);
+    }
+    window.startDots = () => { if (!dotRunning) { dotRunning = true; requestAnimationFrame(frame); } };
+    window.stopDots = () => { dotRunning = false; };
+}
+function updateDotGrid() {
+    if (!dotCanvas || !fineDesktop) return;
+    const show = curView === "home";
+    dotCanvas.classList.toggle("show", show);
+    if (show && window.startDots) window.startDots();
+    if (!show && window.stopDots) setTimeout(window.stopDots, 900);
+}
+
+// ── 3D 뷰어 슬롯: GLB 파일이 생기면 자동 표시 ──────────
+fetch("assets/models/mascot.glb", { method: "HEAD" }).then((r) => {
+    if (!r.ok) return;
+    const sec = document.getElementById("model3d");
+    const s = document.createElement("script");
+    s.type = "module";
+    s.src = "https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js";
+    document.head.appendChild(s);
+    document.getElementById("modelFrame").innerHTML =
+        `<model-viewer src="assets/models/mascot.glb" camera-controls auto-rotate
+            shadow-intensity="1" exposure="1.1" alt="찐컷 3D 마스코트"></model-viewer>`;
+    sec.hidden = false;
+}).catch(() => {});
 
 // ── 라이트박스 (페이지 안 재생) ────────────────────────
 const lb = document.getElementById("lightbox");
@@ -40,24 +165,12 @@ function openVideo(w, vert) {
     lbFrame.innerHTML = `<iframe src="https://www.youtube.com/embed/${w.id}?autoplay=1&rel=0"
         title="${w.t}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
     lb.hidden = false;
-    document.body.style.overflow = "hidden";
 }
-function closeVideo() { lb.hidden = true; lbFrame.innerHTML = ""; document.body.style.overflow = ""; }
+function closeVideo() { lb.hidden = true; lbFrame.innerHTML = ""; }
 document.getElementById("lbClose1").addEventListener("click", closeVideo);
 document.getElementById("lbClose2").addEventListener("click", closeVideo);
 addEventListener("keydown", (e) => { if (e.key === "Escape" && !lb.hidden) closeVideo(); });
 lb.hidden = true;
-
-// ── 히어로: 자동재생 루프 영상 3장 (부채꼴, 호버 시 앞으로) ──
-const heroCards = document.querySelector(".hero-cards");
-if (heroCards) {
-    ["assets/loops/loop1.mp4", "assets/loops/loop2.mp4", "assets/loops/loop3.mp4"].forEach((src) => {
-        const d = document.createElement("div");
-        d.className = "tilt-card";
-        d.innerHTML = `<video src="${src}" autoplay muted loop playsinline></video>`;
-        heroCards.appendChild(d);
-    });
-}
 
 // ── 작업 갤러리 — 대표 원안: 카테고리 4종 + 전부 16:9 + 더보기 ──
 const grid = document.getElementById("worksGrid");
@@ -127,30 +240,31 @@ if (qf) {
     });
 }
 
-// ── 부드러운 섹션 이동 ─────────────────────────────────
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-        const target = document.querySelector(a.getAttribute("href"));
-        if (!target) return;
-        e.preventDefault();
-        const from = scrollY;
-        const to = target.getBoundingClientRect().top + scrollY - 70;
-        const dur = 700;
-        const t0 = performance.now();
-        const ease = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-        (function step(now) {
-            const p = Math.min(1, (now - t0) / dur);
-            scrollTo(0, from + (to - from) * ease(p));
-            if (p < 1) requestAnimationFrame(step);
-        })(t0);
-    });
-});
+// ── 푸터: 모든 화면 맨 아래에 붙인다 ───────────────────
+const FOOTER = `
+<footer class="footer">
+    <div class="footer-brand">
+        <img src="assets/images/회사로고_찐컷.png" alt="찐컷">
+        <p>팔리는 영상을 만드는 회사</p>
+    </div>
+    <div class="footer-links">
+        <a href="https://www.youtube.com/@zzincut" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/zzincut" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@zzincut" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:zzincut@gmail.com">Mail</a>
+    </div>
+    <p class="footer-legal">찐컷 · 대표 전준범 · 사업자등록번호 840-01-04037<br>
+    대구광역시 북구 호암로 51, 4층 (대구창조경제혁신센터) · zzincut@gmail.com</p>
+</footer>`;
+viewEls.forEach((v) => v.insertAdjacentHTML("beforeend", FOOTER));
 
-// ── 스크롤 리빌 + 내비 배경 ────────────────────────────
+// ── 스크롤 리빌 ────────────────────────────────────────
 const io = new IntersectionObserver(
     (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }),
     { threshold: 0.12 }
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-const nav = document.getElementById("nav");
-addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 40), { passive: true });
+
+// ── 시작 — 모든 선언이 끝난 뒤에 첫 라우팅을 돈다 ──────
+route();
+updateDotGrid();
