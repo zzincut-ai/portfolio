@@ -39,7 +39,7 @@ section { padding: 96px 24px; max-width: var(--max); margin: 0 auto; }
     justify-content: space-between; padding: 12px 22px; transition: .3s; }
 .nav.scrolled { background: rgba(255,255,255,.8); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
 .nav-logo img { height: 36px; width: auto; }
-.nav-links { display: flex; gap: 26px; font-size: 15px; font-weight: 600; color: var(--ink-dim); }
+.nav-links { display: flex; gap: 26px; font-size: 15px; font-weight: 800; color: var(--ink); }
 .nav-links a { position: relative; padding: 4px 0; }
 .nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 2px;
     background: var(--accent); border-radius: 2px; transition: width .25s; }
