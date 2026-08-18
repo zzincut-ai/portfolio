@@ -93,7 +93,8 @@ img { max-width: 100%; display: block; }
 .showcase { position: relative; min-height: calc(100vh - var(--nav-h) - 110px);
     max-width: 1080px; margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 34px;
     display: flex; flex-direction: column; justify-content: center; }
-.hero-grid { position: relative; display: flex; align-items: flex-start;
+/* 텍스트 기둥과 영상 카드의 위·아래를 맞춰 하단 실선(스탯 구분선) 위에 나란히 앉힌다 */
+.hero-grid { position: relative; display: flex; align-items: stretch;
     gap: clamp(20px, 3vw, 48px); }
 .hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0; }
 /* 3D 카툰 타이포 (레고 포스터 레퍼런스) — 라운드 폰트 + 사출 + 면 그라데이션·노이즈 */
@@ -102,13 +103,20 @@ img { max-width: 100%; display: block; }
     font-family: "Cafe24Ssurround", "Pretendard Variable", Pretendard, sans-serif;
     font-weight: 700; color: transparent;
     -webkit-background-clip: text; background-clip: text; }
-.g1 { font-size: clamp(42px, 5.8vw, 82px);
+/* "팔리는" — 뾰족하고 날리는 느낌: 블랙한산스 + 기울임 + 하드 섀도 */
+.g1 { font-size: clamp(46px, 6.2vw, 88px);
+    font-family: "Black Han Sans", "Cafe24Ssurround", Pretendard, sans-serif;
+    letter-spacing: .01em; width: max-content;
     background-image:
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer></filter><rect width="160" height="160" filter="url(%23n)"/></svg>'),
         linear-gradient(180deg, #66a0ff 0%, #3b7bff 58%, #2b5fd9 100%);
     background-size: 160px 160px, 100% 100%;
-    text-shadow: 0 2px 0 #2b5fd9, 0 4px 0 #2450b8, 0 6px 0 #1d4097, 0 14px 26px rgba(23, 40, 90, .3);
-    animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
+    text-shadow: 4px 4px 0 #1d43a8, 8px 8px 22px rgba(23, 40, 90, .3);
+    animation: g1In 1s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes g1In {
+    from { opacity: 0; transform: translateY(50px) skewX(-10deg); }
+    to { opacity: 1; transform: skewX(-10deg); }
+}
 .g2 { font-size: clamp(64px, 9.6vw, 138px); margin-top: 4px; white-space: nowrap;
     background-image:
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.14"/></feComponentTransfer></filter><rect width="160" height="160" filter="url(%23n)"/></svg>'),
@@ -125,7 +133,7 @@ img { max-width: 100%; display: block; }
     text-shadow: 0 3px 0 #cf8f00; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
 .loop-stage { position: relative; z-index: 1;
-    height: min(64vh, 560px); width: auto; aspect-ratio: 9/16; border-radius: 22px;
+    height: auto; min-height: 340px; width: auto; aspect-ratio: 9/16; border-radius: 22px;
     overflow: hidden; box-shadow: 0 30px 60px rgba(15, 25, 60, .38), 0 8px 20px rgba(15, 25, 60, .22);
     background: #dde5f5;
     animation: giantIn 1s .3s cubic-bezier(.2,.7,.2,1) both; }
@@ -148,7 +156,8 @@ img { max-width: 100%; display: block; }
     transition: .2s; }
 .cat-chips a:hover { border-color: var(--accent); color: var(--accent-deep); transform: translateY(-2px); }
 /* 영상 카드 덱 — 브랜드 투톤(파랑·노랑) 카드가 뒤에 살짝 */
-.stage-deck { position: relative; margin-left: auto; flex: 0 0 auto; cursor: pointer; }
+.stage-deck { position: relative; margin-left: auto; flex: 0 0 auto; cursor: pointer;
+    display: flex; align-items: stretch; }
 .deck-card { position: absolute; inset: 0; border-radius: 22px; z-index: 0;
     transition: translate .45s cubic-bezier(.2,.7,.2,1), rotate .45s cubic-bezier(.2,.7,.2,1); }
 .dc1 { background: linear-gradient(150deg, #ffcf3d, #ff9d00); rotate: 5deg; translate: 20px 14px;
@@ -169,7 +178,11 @@ img { max-width: 100%; display: block; }
     box-shadow: var(--shadow); max-width: 760px; margin-bottom: 26px; }
 .pain-card p { color: #3c4150; font-size: 17px; line-height: 1.85; margin-bottom: 14px; }
 .pain-card b { color: var(--accent-deep); }
-.pain-card a { color: var(--accent); font-weight: 800; font-size: 15px; }
+.pain-card a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-deep);
+    font-weight: 800; font-size: 15px; padding: 11px 18px; border-radius: 999px;
+    background: #eef3ff; transition: .2s; }
+.pain-card a:hover { background: var(--accent); color: #fff; transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(59, 123, 255, .35); }
 .dark-band { background: #14161d; color: #fff; border-radius: var(--radius);
     padding: 52px 38px; text-align: center; box-shadow: var(--shadow-lg); }
 .dark-band p { font-size: clamp(22px, 3.4vw, 32px); font-weight: 700; line-height: 1.5; }
@@ -385,7 +398,8 @@ img { max-width: 100%; display: block; }
     .g1 { font-size: clamp(30px, 6vw, 54px); }
     .g2 { font-size: clamp(46px, 9.6vw, 92px); }
     .s1 { right: -10px; }
-    .loop-stage { height: min(46vh, 380px); margin: 22px auto 0; }
+    .stage-deck { margin: 22px auto 0; }
+    .loop-stage { height: min(46vh, 380px); }
     .hero-stats { gap: 26px; }
     .side-note { display: none; }
 }
@@ -407,6 +421,7 @@ img { max-width: 100%; display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
     .reveal, .g1, .g2, .loop-stage { animation: none; transition: none; opacity: 1; transform: none; }
+    .g1 { transform: skewX(-10deg); }
     .marquee-track, .blob { animation: none; }
     .views { transition: none; }
 }

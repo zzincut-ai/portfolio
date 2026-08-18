@@ -42,9 +42,9 @@ function goto(name) {
     const i = VIEW_ORDER.indexOf(name);
     curView = name;
     viewsEl.style.transform = `translateX(${-i * 100}vw)`;
-    document.querySelectorAll("[data-view]").forEach((a) => {
-        if (a.classList.contains("btn")) return;
-        a.classList.toggle("on", a.dataset.view === name && a.closest(".nav-links"));
+    // 활성 표시는 내비 링크에만 — 본문 링크의 클래스를 건드리면 리빌(.on)이 지워진다
+    document.querySelectorAll(".nav-links a").forEach((a) => {
+        a.classList.toggle("on", a.dataset.view === name);
     });
     const fc = document.getElementById("floatCta");
     if (fc) fc.classList.toggle("hide", name === "contact" || name === "store");
