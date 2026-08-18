@@ -96,7 +96,9 @@ img { max-width: 100%; display: block; }
 /* 텍스트 기둥과 영상 카드의 위·아래를 맞춰 하단 실선(스탯 구분선) 위에 나란히 앉힌다 */
 .hero-grid { position: relative; display: flex; align-items: stretch;
     gap: clamp(20px, 3vw, 48px); }
-.hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0; }
+.hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0;
+    display: flex; flex-direction: column; align-items: flex-start; }
+.hero-text .hero-actions { margin-top: auto; padding-top: 20px; }
 /* 3D 카툰 타이포 (레고 포스터 레퍼런스) — 라운드 폰트 + 사출 + 면 그라데이션·노이즈 */
 .title-block { position: relative; rotate: -2deg; width: max-content; max-width: 100%; }
 .giant { display: block; letter-spacing: .01em; line-height: 1.04; user-select: none;
@@ -133,7 +135,7 @@ img { max-width: 100%; display: block; }
     text-shadow: 0 3px 0 #cf8f00; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
 .loop-stage { position: relative; z-index: 1;
-    height: auto; min-height: 340px; width: auto; aspect-ratio: 9/16; border-radius: 22px;
+    height: min(66vh, 580px); width: auto; aspect-ratio: 9/16; border-radius: 22px;
     overflow: hidden; box-shadow: 0 30px 60px rgba(15, 25, 60, .38), 0 8px 20px rgba(15, 25, 60, .22);
     background: #dde5f5;
     animation: giantIn 1s .3s cubic-bezier(.2,.7,.2,1) both; }
