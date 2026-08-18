@@ -4,6 +4,11 @@
     src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2") format("woff2");
     font-weight: 800; font-display: swap;
 }
+@font-face {
+    font-family: "yangjin";
+    src: url("https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff") format("woff");
+    font-weight: normal; font-display: swap;
+}
 :root {
     --bg: #f6f8fc;
     --ink: #171a23;
@@ -81,21 +86,24 @@ img { max-width: 100%; display: block; }
 /* ── 홈: 거대 타이포 + 영상 로테이션 쇼케이스 ─────────
    글자는 항상 영상 위(z2). 영상은 글자 뒤로 살짝 겹치기만 한다 — 가림 없음. */
 .showcase { position: relative; min-height: calc(100vh - var(--nav-h));
-    max-width: var(--max); margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 40px;
+    max-width: 1080px; margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 40px;
     display: flex; flex-direction: column; justify-content: center; }
 .hero-grid { position: relative; display: flex; align-items: flex-start;
     gap: clamp(20px, 3vw, 48px); }
 .hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0; }
-/* TITLE/FEED/POST 레퍼런스 — 꽉 짜인 스택 + 세로 그라데이션 깊이감 */
-.giant { display: block; letter-spacing: -.015em; line-height: .98; user-select: none;
-    font-family: "Paperlogy-8ExtraBold", "Pretendard Variable", Pretendard, sans-serif;
-    font-weight: 800; font-size: clamp(48px, 8vw, 116px);
-    -webkit-background-clip: text; background-clip: text; color: transparent; }
-.g1 { background-image: linear-gradient(180deg, #3a4152 0%, #14161d 78%);
-    filter: drop-shadow(0 14px 22px rgba(23, 26, 35, .22));
+/* 클레이토이 레퍼런스 — 통통한 글자 + 두꺼운 3D 옆면 */
+.giant { display: block; letter-spacing: .01em; line-height: 1.04; user-select: none;
+    font-family: "yangjin", "Paperlogy-8ExtraBold", "Pretendard Variable", Pretendard, sans-serif;
+    font-weight: 400; font-size: clamp(46px, 7.4vw, 106px); }
+.g1 { color: #38415a;
+    text-shadow: 1px 1px 0 #171a23, 2px 2px 0 #171a23, 3px 3px 0 #171a23, 4px 4px 0 #171a23,
+        5px 5px 0 #171a23, 6px 6px 0 #171a23, 7px 7px 0 #171a23, 8px 8px 0 #171a23,
+        0 20px 34px rgba(23, 26, 35, .32);
     animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
-.g2 { background-image: linear-gradient(180deg, #6ea0ff 0%, #2b5fd9 82%);
-    filter: drop-shadow(0 14px 22px rgba(43, 95, 217, .3)); margin-top: -4px;
+.g2 { color: #4b86ff; margin-top: 2px;
+    text-shadow: 1px 1px 0 #2b5fd9, 2px 2px 0 #2b5fd9, 3px 3px 0 #2b5fd9, 4px 4px 0 #2b5fd9,
+        5px 5px 0 #2b5fd9, 6px 6px 0 #2b5fd9, 7px 7px 0 #2b5fd9, 8px 8px 0 #2b5fd9,
+        0 20px 34px rgba(43, 95, 217, .35);
     animation: giantIn 1s .15s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
 .loop-stage { position: relative; z-index: 1; flex: 0 0 auto; margin: 0 auto;
