@@ -72,19 +72,34 @@ function updateNavShadow() {
 }
 viewEls.forEach((v) => v.addEventListener("scroll", updateNavShadow, { passive: true }));
 
-// ── 홈 히어로: 영상 로테이션 (5초마다 교체) ────────────
+// ── 홈 히어로: 영상 로테이션 ───────────────────────────
+// 각 영상을 끝까지 재생한 뒤 다음 영상으로 크로스페이드 — 중간에 끊기지 않는다.
 const stage = document.getElementById("loopStage");
 if (stage) {
     const vids = Array.from(stage.querySelectorAll("video"));
     let vi = 0;
-    vids.forEach((v) => v.play().catch(() => {}));
-    vids[0].classList.add("live");
-    setInterval(() => {
-        vids[vi].classList.remove("live");
+    let switching = false;
+    function advance() {
+        if (switching) return;
+        switching = true;
+        const cur = vids[vi];
         vi = (vi + 1) % vids.length;
-        vids[vi].play().catch(() => {});
-        vids[vi].classList.add("live");
-    }, 5000);
+        const nxt = vids[vi];
+        nxt.currentTime = 0;
+        nxt.play().catch(() => {});
+        nxt.classList.add("live");
+        cur.classList.remove("live");
+        setTimeout(() => { cur.pause(); switching = false; }, 1200);
+    }
+    vids.forEach((v) => {
+        v.addEventListener("timeupdate", () => {
+            // 끝나기 직전에 미리 페이드를 시작해 검은 프레임을 안 보여준다
+            if (v === vids[vi] && v.duration && v.currentTime > v.duration - 1.0) advance();
+        });
+        v.addEventListener("ended", () => { if (v === vids[vi]) advance(); });
+    });
+    vids[0].play().catch(() => {});
+    vids[0].classList.add("live");
 }
 
 // ── 커서 반응 도트 그리드 (홈 + 데스크톱에서만) ────────
@@ -213,7 +228,7 @@ document.getElementById("filter").addEventListener("click", (e) => {
     renderGrid();
 });
 
-// ── 쇼츠 마키 — gap 없이 margin으로 이음새 없는 루프 ────
+// ── 쇼츠 마키 — rAF로 픽셀 단위 무한 루프 (이음새·점프 없음) ──
 const track = document.getElementById("marqueeTrack");
 if (track) {
     const shorts = WORKS.filter((w) => w.shorts);
@@ -221,12 +236,30 @@ if (track) {
         const b = document.createElement("button");
         b.type = "button";
         const img = document.createElement("img");
-        img.src = thumbVert(w); img.alt = w.t; img.loading = "lazy";
+        img.src = thumbVert(w); img.alt = w.t; img.decoding = "async";
         img.onerror = () => fallback(img, w);
         b.appendChild(img);
         b.addEventListener("click", () => openVideo(w, true));
         track.appendChild(b);
     });
+    let mx = 0, half = 0, mPaused = false, mLast = 0;
+    const measure = () => { half = track.scrollWidth / 2; };
+    addEventListener("load", measure);
+    addEventListener("resize", measure);
+    measure();
+    track.parentElement.addEventListener("mouseenter", () => { mPaused = true; });
+    track.parentElement.addEventListener("mouseleave", () => { mPaused = false; });
+    (function mstep(now) {
+        const dt = Math.min(50, now - mLast || 16);
+        mLast = now;
+        if (!mPaused) {
+            if (half === 0) measure();
+            mx -= dt * 0.038;
+            if (half > 0 && -mx >= half) mx += half;
+            track.style.transform = `translate3d(${mx}px,0,0)`;
+        }
+        requestAnimationFrame(mstep);
+    })(0);
 }
 
 // ── 빠른 상담 폼 → 구글폼으로 제출 ─────────────────────
