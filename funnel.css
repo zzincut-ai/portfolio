@@ -91,12 +91,12 @@ img { max-width: 100%; display: block; }
 /* ── 홈: 거대 타이포 + 영상 로테이션 쇼케이스 ─────────
    글자는 항상 영상 위(z2). 영상은 글자 뒤로 살짝 겹치기만 한다 — 가림 없음. */
 .showcase { position: relative; min-height: calc(100vh - var(--nav-h) - 110px);
-    max-width: 1150px; margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 34px;
+    max-width: 1220px; margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 34px;
     display: flex; flex-direction: column; justify-content: center; }
 /* 텍스트 기둥과 영상 카드의 위·아래를 맞춰 하단 실선(스탯 구분선) 위에 나란히 앉힌다 */
 .hero-grid { position: relative; display: flex; align-items: stretch;
     gap: clamp(20px, 3vw, 48px); }
-.hero-text { position: relative; z-index: 2; flex: 0 0 min(540px, 44%); min-width: 0;
+.hero-text { position: relative; z-index: 2; flex: 0 0 min(500px, 40%); min-width: 0;
     display: flex; flex-direction: column; align-items: flex-start; }
 .hero-text .hero-actions { margin-top: auto; padding-top: 20px; }
 /* 3D 카툰 타이포 (레고 포스터 레퍼런스) — 라운드 폰트 + 사출 + 면 그라데이션·노이즈 */
@@ -106,7 +106,7 @@ img { max-width: 100%; display: block; }
     font-weight: 700; color: transparent;
     -webkit-background-clip: text; background-clip: text; }
 /* "팔리는" — 대표 제작 붓글씨 레터링 (assets/lettering/palineun.png) */
-.g1-img { display: block; width: clamp(150px, 16vw, 240px); height: auto;
+.g1-img { display: block; width: clamp(90px, 8vw, 120px); height: auto;
     margin: 0 0 18px -4px;
     filter: drop-shadow(0 12px 22px rgba(23, 40, 90, .28));
     animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
