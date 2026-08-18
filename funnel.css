@@ -106,7 +106,7 @@ img { max-width: 100%; display: block; }
     font-weight: 700; color: transparent;
     -webkit-background-clip: text; background-clip: text; }
 /* "팔리는" — 대표 제작 붓글씨 레터링 (assets/lettering/palineun.png) */
-.g1-img { display: block; width: clamp(90px, 8vw, 120px); height: auto;
+.g1-img { display: block; width: clamp(120px, 12vw, 180px); height: auto;
     margin: 0 0 18px -4px;
     filter: drop-shadow(0 12px 22px rgba(23, 40, 90, .28));
     animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
