@@ -37,29 +37,28 @@
 
                 <!-- 거대 타이포 + 영상 로테이션 쇼케이스 -->
                 <div class="showcase">
-                    <div class="giant-wrap">
-                        <span class="giant g1">팔리는</span>
+                    <div class="hero-grid">
+                        <div class="hero-text">
+                            <p class="eyebrow">AI 영상 제작 · 광고 성과까지</p>
+                            <span class="giant g1">팔리는</span>
+                            <span class="giant g2">영상</span>
+                            <p class="hero-sub">광고에 태울 영상이 필요한 대표님께.<br>
+                            기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
+                            <div class="hero-actions">
+                                <a href="#contact" data-view="contact" class="btn btn-primary">상담 신청하기</a>
+                                <a href="#store" data-view="store" class="btn btn-soft">무료로 시작하기</a>
+                            </div>
+                        </div>
                         <div class="loop-stage" id="loopStage" aria-label="찐컷 작업 미리보기">
                             <video src="assets/loops/loop1.mp4" muted loop playsinline preload="auto"></video>
                             <video src="assets/loops/loop2.mp4" muted loop playsinline preload="auto"></video>
                             <video src="assets/loops/loop3.mp4" muted loop playsinline preload="auto"></video>
                         </div>
-                        <span class="giant g2">영상</span>
-                        <span class="side-note sn1">AI 영상 제작</span>
-                        <span class="side-note sn2">광고 성과까지</span>
                     </div>
-                    <div class="showcase-foot">
-                        <p class="hero-sub">광고에 태울 영상이 필요한 대표님께.<br>
-                        기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
-                        <div class="hero-actions">
-                            <a href="#contact" data-view="contact" class="btn btn-primary">상담 신청하기</a>
-                            <a href="#store" data-view="store" class="btn btn-soft">무료로 시작하기</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div><b>5,000+</b><span>제작한 콘텐츠</span></div>
-                            <div><b>18시간</b><span>가장 빨랐던 첫 시안</span></div>
-                            <div><b>3일 이내</b><span>상담 신청 회신</span></div>
-                        </div>
+                    <div class="hero-stats">
+                        <div><b>5,000+</b><span>제작한 콘텐츠</span></div>
+                        <div><b>18시간</b><span>가장 빨랐던 첫 시안</span></div>
+                        <div><b>3일 이내</b><span>상담 신청 회신</span></div>
                     </div>
                 </div>
 
@@ -68,10 +67,43 @@
                     <div class="marquee-track" id="marqueeTrack"></div>
                 </div>
 
-                <!-- 무료 요약 → 스토어로 -->
+                <!-- 1) 문제 제기 — 훅 -->
+                <section class="pain">
+                    <h2 class="section-title reveal">영상도 올리고 SNS도 하는데,<br>왜 문의는 안 올까요?</h2>
+                    <p class="section-sub reveal">열심히 안 해서가 아니에요. 저희도 똑같이 겪어봤거든요.</p>
+                    <div class="pain-card reveal">
+                        <p>찐컷은 콘텐츠를 <b>5,472개</b> 만들어봤어요. 그런데 그중 돈이 된 기록은
+                        <b>2개</b>였어요. 만드는 실력의 문제가 아니었어요.
+                        <b>"잘 만든 것"과 "팔리는 것"이 다르다</b>는 걸 몰랐던 거죠.</p>
+                        <a href="#think" data-view="think">그날 바뀐 찐컷의 기준 읽어보기 →</a>
+                    </div>
+                    <div class="dark-band reveal">
+                        <p>예쁜 영상은 세상에 많아요.<br><b>파는 영상</b>이 없을 뿐이죠.</p>
+                    </div>
+                </section>
+
+                <!-- 2) 방법 — 진행 방식 -->
+                <section class="process">
+                    <h2 class="section-title reveal">그래서 찐컷은 이렇게 일해요</h2>
+                    <ol class="steps">
+                        <li class="reveal"><i>01</i><div><b>상담 신청</b><span>폼 작성 3분. 광고 계획과 예산을 먼저 여쭤봐요</span></div></li>
+                        <li class="reveal"><i>02</i><div><b>무료 상담</b><span>방향과 견적을 확정해요. 안 맞으면 여기서 멈춰도 돼요</span></div></li>
+                        <li class="reveal"><i>03</i><div><b>기획</b><span>콘티를 먼저 보여드리고, 확인 후에 제작에 들어가요</span></div></li>
+                        <li class="reveal"><i>04</i><div><b>제작</b><span>AI라서 빨라요. 첫 미팅 다음 날 첫 영상을 보낸 적도 있어요</span></div></li>
+                        <li class="reveal"><i>05</i><div><b>납품 + 성과</b><span>영상만 드리고 끝이 아니라, 광고 성과를 같이 봐요</span></div></li>
+                    </ol>
+                    <div class="stack-band reveal">
+                        <h3>납품에서 끝내지 않아요</h3>
+                        <p>광고에 태울 것까지 생각하며 만들어요. 채널에 맞는 규격, 광고에 맞는 구성.<br>
+                        무엇을 어디까지 드릴지는 프로젝트마다 다르니, 구성과 가격은 상담에서 함께 정해요.</p>
+                        <a href="#contact" data-view="contact" class="btn btn-primary">상담 신청하기</a>
+                    </div>
+                </section>
+
+                <!-- 3) 무료 입구 — 부담 제거 -->
                 <section class="free">
-                    <h2 class="section-title reveal">무료로 시작하세요</h2>
-                    <p class="section-sub reveal">일단 받아보고, 좋으면 그때 이야기해요.</p>
+                    <h2 class="section-title reveal">일단 무료부터 받아보세요</h2>
+                    <p class="section-sub reveal">받아보고, 좋으면 그때 이야기해요. 아니어도 잃는 게 없어요.</p>
                     <div class="card-row">
                         <a class="mini-offer reveal" href="#store" data-view="store">
                             <span class="tag tag-free">무료</span>
@@ -88,28 +120,22 @@
                     </div>
                 </section>
 
-                <!-- 진행 방식 -->
-                <section class="process">
-                    <h2 class="section-title reveal">일은 이렇게 진행돼요</h2>
-                    <ol class="steps">
-                        <li class="reveal"><i>01</i><div><b>상담 신청</b><span>폼 작성 3분. 광고 계획과 예산을 먼저 여쭤봐요</span></div></li>
-                        <li class="reveal"><i>02</i><div><b>무료 상담</b><span>방향과 견적을 확정해요. 안 맞으면 여기서 멈춰도 돼요</span></div></li>
-                        <li class="reveal"><i>03</i><div><b>기획</b><span>콘티를 먼저 보여드리고, 확인 후에 제작에 들어가요</span></div></li>
-                        <li class="reveal"><i>04</i><div><b>제작</b><span>AI라서 빨라요. 첫 미팅 다음 날 첫 영상을 보낸 적도 있어요</span></div></li>
-                        <li class="reveal"><i>05</i><div><b>납품 + 성과</b><span>영상만 드리고 끝이 아니라, 광고 성과를 같이 봐요</span></div></li>
-                    </ol>
-                    <div class="stack-band reveal">
-                        <h3>납품에서 끝내지 않아요</h3>
-                        <p>광고에 태울 것까지 생각하며 만들어요. 채널에 맞는 규격, 광고에 맞는 구성.<br>
-                        무엇을 어디까지 드릴지는 프로젝트마다 다르니, 구성과 가격은 상담에서 함께 정해요.</p>
-                        <a href="#contact" data-view="contact" class="btn btn-primary">상담 신청하기</a>
-                    </div>
-                </section>
-
                 <!-- 3D 뷰어 슬롯 — GLB가 생기면 자동으로 나타난다 -->
                 <section class="model3d" id="model3d" hidden>
                     <h2 class="section-title reveal">찐컷을 3D로 만나보세요</h2>
                     <div class="model-frame reveal" id="modelFrame"></div>
+                </section>
+
+                <!-- 4) 마지막 붙잡기 -->
+                <section class="last-call">
+                    <div class="last-band reveal">
+                        <h2>혹시 지금도<br>'예쁜 영상'을 만들고 계신가요?</h2>
+                        <p>폼 작성 3분이면 돼요. 팔리는 방향을 같이 찾아드릴게요.</p>
+                        <div class="hero-actions">
+                            <a href="#contact" data-view="contact" class="btn btn-light">상담 신청하기</a>
+                            <a href="#store" data-view="store" class="btn btn-ghost">무료 진단부터 받기</a>
+                        </div>
+                    </div>
                 </section>
             </section>
 
@@ -297,6 +323,9 @@
 
         </div>
     </div>
+
+    <!-- 떠 있는 무료 진단 버튼 (상담 화면에서는 숨김) -->
+    <a href="#store" data-view="store" class="float-cta" id="floatCta">🎬 무료 진단 받기</a>
 
     <!-- 라이트박스 (페이지 안 재생) -->
     <div class="lightbox" id="lightbox" hidden>

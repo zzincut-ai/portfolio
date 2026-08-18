@@ -46,6 +46,8 @@ function goto(name) {
         if (a.classList.contains("btn")) return;
         a.classList.toggle("on", a.dataset.view === name && a.closest(".nav-links"));
     });
+    const fc = document.getElementById("floatCta");
+    if (fc) fc.classList.toggle("hide", name === "contact" || name === "store");
     updateNavShadow();
     updateDotGrid();
 }
