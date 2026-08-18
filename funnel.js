@@ -100,6 +100,9 @@ if (stage) {
     });
     vids[0].play().catch(() => {});
     vids[0].classList.add("live");
+    // 카드 덱 클릭 → 포트폴리오 화면
+    const deck = stage.closest(".stage-deck");
+    if (deck) deck.addEventListener("click", () => { location.hash = "works"; });
 }
 
 // ── 커서 반응 도트 그리드 (홈 + 데스크톱에서만) ────────
