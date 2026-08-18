@@ -97,8 +97,10 @@ img { max-width: 100%; display: block; }
     font-weight: 700; }
 .g1 { color: var(--ink); font-size: clamp(30px, 4.4vw, 62px);
     animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
-.g1 .pix-deco { font-style: normal; font-size: .52em; vertical-align: .9em; margin-left: .18em; }
+.g1 .pix-deco { font-style: normal; font-size: .52em; vertical-align: .9em; margin-left: .18em;
+    color: #ffb928; }
 .g2 { color: var(--accent); font-size: clamp(78px, 11vw, 158px); margin-top: 4px;
+    text-shadow: .055em .055em 0 #16265c;
     animation: giantIn 1s .15s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
 .loop-stage { position: relative; z-index: 1; flex: 0 0 auto; margin-left: auto;
