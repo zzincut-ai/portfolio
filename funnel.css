@@ -91,22 +91,15 @@ img { max-width: 100%; display: block; }
 .hero-grid { position: relative; display: flex; align-items: flex-start;
     gap: clamp(20px, 3vw, 48px); }
 .hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0; }
-/* 클레이토이 레퍼런스 — 통통한 글자 + 두꺼운 3D 옆면 */
-.giant { display: block; letter-spacing: .01em; line-height: 1.04; user-select: none;
-    font-family: "yangjin", "Paperlogy-8ExtraBold", "Pretendard Variable", Pretendard, sans-serif;
-    font-weight: 400; font-size: clamp(46px, 7.4vw, 106px); }
-.g1 { color: #38415a;
-    text-shadow: 1px 1px 0 #171a23, 2px 2px 0 #171a23, 3px 3px 0 #171a23, 4px 4px 0 #171a23,
-        5px 5px 0 #171a23, 6px 6px 0 #171a23, 7px 7px 0 #171a23, 8px 8px 0 #171a23,
-        0 20px 34px rgba(23, 26, 35, .32);
-    animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
-.g2 { color: #4b86ff; margin-top: 2px;
-    text-shadow: 1px 1px 0 #2b5fd9, 2px 2px 0 #2b5fd9, 3px 3px 0 #2b5fd9, 4px 4px 0 #2b5fd9,
-        5px 5px 0 #2b5fd9, 6px 6px 0 #2b5fd9, 7px 7px 0 #2b5fd9, 8px 8px 0 #2b5fd9,
-        0 20px 34px rgba(43, 95, 217, .35);
+/* 원래 타이포 — 프리텐다드 솔리드. 대표가 주는 디자인 텍스트로 교체 예정 자리 */
+.giant { display: block; letter-spacing: -.03em; line-height: 1.06; user-select: none;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, sans-serif;
+    font-weight: 800; font-size: clamp(48px, 7.8vw, 112px); }
+.g1 { color: var(--ink); animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
+.g2 { color: var(--accent); margin-top: -6px;
     animation: giantIn 1s .15s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
-.loop-stage { position: relative; z-index: 1; flex: 0 0 auto; margin: 0 auto;
+.loop-stage { position: relative; z-index: 1; flex: 0 0 auto; margin-left: auto;
     height: min(64vh, 560px); width: auto; aspect-ratio: 9/16; border-radius: 22px;
     overflow: hidden; box-shadow: var(--shadow-lg); background: #dde5f5;
     animation: giantIn 1s .3s cubic-bezier(.2,.7,.2,1) both; }
