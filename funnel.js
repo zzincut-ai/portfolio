@@ -231,8 +231,10 @@ document.getElementById("filter").addEventListener("click", (e) => {
 // ── 쇼츠 마키 — rAF로 픽셀 단위 무한 루프 (이음새·점프 없음) ──
 const track = document.getElementById("marqueeTrack");
 if (track) {
+    // 복제 4벌 — 넓은 모니터에서도 순환 지점에서 오른쪽이 비지 않게
     const shorts = WORKS.filter((w) => w.shorts);
-    [...shorts, ...shorts].forEach((w) => {
+    const COPIES = 4;
+    Array.from({ length: COPIES }, () => shorts).flat().forEach((w) => {
         const b = document.createElement("button");
         b.type = "button";
         const img = document.createElement("img");
@@ -242,8 +244,8 @@ if (track) {
         b.addEventListener("click", () => openVideo(w, true));
         track.appendChild(b);
     });
-    let mx = 0, half = 0, mPaused = false, mLast = 0;
-    const measure = () => { half = track.scrollWidth / 2; };
+    let mx = 0, unit = 0, mPaused = false, mLast = 0;
+    const measure = () => { unit = track.scrollWidth / COPIES; };
     addEventListener("load", measure);
     addEventListener("resize", measure);
     measure();
@@ -253,9 +255,9 @@ if (track) {
         const dt = Math.min(50, now - mLast || 16);
         mLast = now;
         if (!mPaused) {
-            if (half === 0) measure();
+            if (unit === 0) measure();
             mx -= dt * 0.038;
-            if (half > 0 && -mx >= half) mx += half;
+            if (unit > 0 && -mx >= unit) mx += unit;
             track.style.transform = `translate3d(${mx}px,0,0)`;
         }
         requestAnimationFrame(mstep);

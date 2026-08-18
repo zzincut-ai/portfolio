@@ -35,26 +35,32 @@
             <!-- ══════════ 1. 홈 ══════════ -->
             <section class="view" id="view-home" data-view="home">
 
-                <!-- 거대 타이포 + 영상 로테이션 쇼케이스 -->
-                <div class="showcase">
-                    <div class="hero-grid">
-                        <div class="hero-text">
-                            <p class="eyebrow">AI 영상 제작 · 광고 성과까지</p>
-                            <span class="giant g1">팔리는<i class="pix-deco">☺</i></span>
-                            <span class="giant g2">영상</span>
-                            <p class="hero-sub">광고에 태울 영상이 필요한 대표님께.<br>
-                            기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
-                            <div class="hero-actions">
-                                <a href="#contact" data-view="contact" class="btn btn-primary">상담 신청하기</a>
-                                <a href="#store" data-view="store" class="btn btn-soft">무료로 시작하기</a>
+                <!-- 포스터 히어로 (YELLOW FOLKS 레퍼런스) — 거대 픽셀 단어를 영상이 가리고 선 구도 -->
+                <div class="poster">
+                    <div class="poster-wall">
+                        <p class="poster-kicker">팔 리 는</p>
+                        <div class="poster-stack">
+                            <span class="poster-giant">영상</span>
+                            <div class="loop-stage" id="loopStage" aria-label="찐컷 작업 미리보기">
+                                <video src="assets/loops/loop1.mp4" muted playsinline preload="auto"></video>
+                                <video src="assets/loops/loop2.mp4" muted playsinline preload="auto"></video>
+                                <video src="assets/loops/loop3.mp4" muted playsinline preload="auto"></video>
                             </div>
-                        </div>
-                        <div class="loop-stage" id="loopStage" aria-label="찐컷 작업 미리보기">
-                            <video src="assets/loops/loop1.mp4" muted playsinline preload="auto"></video>
-                            <video src="assets/loops/loop2.mp4" muted playsinline preload="auto"></video>
-                            <video src="assets/loops/loop3.mp4" muted playsinline preload="auto"></video>
+                            <i class="deco d1" aria-hidden="true">☺</i>
+                            <i class="deco d2" aria-hidden="true">✦</i>
+                            <i class="deco d3" aria-hidden="true">▶</i>
                         </div>
                     </div>
+                    <div class="poster-floor">
+                        <p class="poster-sub">광고에 태울 영상이 필요한 대표님께.<br>
+                        기획부터 제작, 광고 성과까지 한 팀처럼 움직여요.</p>
+                        <div class="hero-actions center">
+                            <a href="#contact" data-view="contact" class="btn btn-light">상담 신청하기</a>
+                            <a href="#store" data-view="store" class="btn btn-ghost">무료로 시작하기</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="statsband">
                     <div class="hero-stats">
                         <div><b>5,000+</b><span>제작한 콘텐츠</span></div>
                         <div><b>18시간</b><span>가장 빨랐던 첫 시안</span></div>
