@@ -304,6 +304,15 @@ const io = new IntersectionObserver(
     { threshold: 0.12 }
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+// 리빌 안전장치 — IO가 놓쳐 투명하게 남은 요소를 살린다 (30초 뒤 스스로 멈춤)
+let sweeps = 0;
+const sweep = setInterval(() => {
+    document.querySelectorAll(".reveal:not(.on)").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && r.top < innerHeight && r.bottom > 0) el.classList.add("on");
+    });
+    if (++sweeps >= 20) clearInterval(sweep);
+}, 1500);
 
 // ── 시작 — 모든 선언이 끝난 뒤에 첫 라우팅을 돈다 ──────
 route();
