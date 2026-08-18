@@ -83,15 +83,20 @@ img { max-width: 100%; display: block; }
 .showcase { position: relative; min-height: calc(100vh - var(--nav-h));
     max-width: var(--max); margin: 0 auto; padding: calc(var(--nav-h) + 24px) 24px 40px;
     display: flex; flex-direction: column; justify-content: center; }
-.hero-grid { position: relative; display: flex; align-items: center;
+.hero-grid { position: relative; display: flex; align-items: flex-start;
     gap: clamp(20px, 3vw, 48px); }
 .hero-text { position: relative; z-index: 2; flex: 0 0 min(560px, 46%); min-width: 0; }
-.giant { display: block; letter-spacing: -.01em; line-height: 1.06; user-select: none;
+/* TITLE/FEED/POST 레퍼런스 — 꽉 짜인 스택 + 세로 그라데이션 깊이감 */
+.giant { display: block; letter-spacing: -.015em; line-height: .98; user-select: none;
     font-family: "Paperlogy-8ExtraBold", "Pretendard Variable", Pretendard, sans-serif;
-    font-weight: 800; font-size: clamp(48px, 8vw, 116px); }
-.g1 { color: var(--ink); animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
-.g2 { color: var(--accent); animation: giantIn 1s .15s cubic-bezier(.2,.7,.2,1) both; }
-.g2 { margin-top: -6px; }
+    font-weight: 800; font-size: clamp(48px, 8vw, 116px);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+.g1 { background-image: linear-gradient(180deg, #3a4152 0%, #14161d 78%);
+    filter: drop-shadow(0 14px 22px rgba(23, 26, 35, .22));
+    animation: giantIn 1s cubic-bezier(.2,.7,.2,1) both; }
+.g2 { background-image: linear-gradient(180deg, #6ea0ff 0%, #2b5fd9 82%);
+    filter: drop-shadow(0 14px 22px rgba(43, 95, 217, .3)); margin-top: -4px;
+    animation: giantIn 1s .15s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes giantIn { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: none; } }
 .loop-stage { position: relative; z-index: 1; flex: 0 0 auto; margin: 0 auto;
     height: min(64vh, 560px); width: auto; aspect-ratio: 9/16; border-radius: 22px;
