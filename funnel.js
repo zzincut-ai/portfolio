@@ -41,7 +41,7 @@ function goto(name) {
     if (!VIEW_ORDER.includes(name)) name = "home";
     const i = VIEW_ORDER.indexOf(name);
     curView = name;
-    viewsEl.style.transform = `translateX(${-i * 100}vw)`;
+    viewEls.forEach((v, n) => v.classList.toggle("active", n === i));
     // 활성 표시는 내비 링크에만 — 본문 링크의 클래스를 건드리면 리빌(.on)이 지워진다
     document.querySelectorAll(".nav-links a").forEach((a) => {
         a.classList.toggle("on", a.dataset.view === name);
