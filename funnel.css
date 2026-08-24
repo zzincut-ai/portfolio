@@ -192,7 +192,7 @@ img { max-width: 100%; display: block; }
 
 /* 문제 제기 + 다크 밴드 */
 .pain-card { background: var(--card); border-radius: var(--radius); padding: 34px 34px;
-    box-shadow: var(--shadow); max-width: 760px; margin-bottom: 26px; }
+    box-shadow: var(--shadow); max-width: 760px; margin: 0 auto 26px; }
 .pain-card p { color: #3c4150; font-size: 17px; line-height: 1.85; margin-bottom: 14px; }
 .pain-card b { color: var(--accent-deep); }
 .pain-card a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-deep);
@@ -205,9 +205,9 @@ img { max-width: 100%; display: block; }
 .dark-band p { font-size: clamp(22px, 3.4vw, 32px); font-weight: 700; line-height: 1.5; }
 /* 검은 배경 위 파랑은 묻힌다 — 흰 외곽선을 둘러 띄운다 (2026-08-24 준범 지적) */
 /* 강조 한 줄은 파란 판에 흰 글자로 얹는다 — 검은 배경에서 가장 또렷하다 */
-.dark-band b { display: inline-block; background: var(--accent); color: #fff;
+.dark-band b { display: inline-block; background: #fff; color: var(--accent);
     border-radius: 6px; padding: .04em .22em .1em; text-shadow: none;
-    box-shadow: 0 6px 20px rgba(39, 67, 199, .45); }
+    box-shadow: 0 6px 22px rgba(255, 255, 255, .28); }
 
 /* 홈 하단 간격 — 무료 코너와 마지막 밴드를 붙인다 */
 #view-home .free { padding-bottom: 36px; }
@@ -252,6 +252,7 @@ img { max-width: 100%; display: block; }
 .marquee-track button:hover img { transform: scale(1.07); }
 
 /* 섹션 타이틀 */
+.section-title, .section-sub { max-width: 780px; margin-left: auto; margin-right: auto; }
 .section-title { font-size: clamp(30px, 5vw, 46px); font-weight: 800; line-height: 1.2;
     letter-spacing: -0.01em; margin-bottom: 14px; }
 .section-sub { color: var(--ink-dim); font-size: 17px; margin-bottom: 40px; }
@@ -323,7 +324,7 @@ img { max-width: 100%; display: block; }
 /* ── 찐컷의 생각 ────────────────────────────────────── */
 .think .chip { margin-bottom: 14px; }
 .essay { background: var(--card); border-radius: var(--radius); padding: 38px 36px;
-    box-shadow: var(--shadow); margin-bottom: 22px; max-width: 780px; }
+    box-shadow: var(--shadow); margin: 0 auto 22px; max-width: 780px; }
 .essay h3 { font-size: 23px; margin-bottom: 14px; letter-spacing: -0.01em; }
 .essay p { color: #3c4150; font-size: 16.5px; margin-bottom: 12px; line-height: 1.85; }
 .essay p:last-child { margin-bottom: 0; }
@@ -511,6 +512,9 @@ img { max-width: 100%; display: block; }
     /* 글줄은 왼쪽 정렬, 덩어리는 가운데 (2026-08-24 준범 지시) */
     .pain-card p, .stack-band p { text-align: left;
         width: fit-content; max-width: 100%; margin-left: auto; margin-right: auto; }
+    /* 글자를 한 단계 줄여 가장 긴 줄이 꽉 차지 않게 — 그래야 가운데로 온 게 보인다 */
+    .pain-card { padding: 26px 20px; }
+    .pain-card p { font-size: 15.5px; }
 
     /* 6) 히어로 버튼 두 개 — 폭을 같게 */
     .hero-actions { gap: 10px; width: 100%; }
