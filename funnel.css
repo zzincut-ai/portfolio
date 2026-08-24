@@ -252,7 +252,9 @@ img { max-width: 100%; display: block; }
 .marquee-track button:hover img { transform: scale(1.07); }
 
 /* 섹션 타이틀 */
-.section-title, .section-sub { max-width: 780px; margin-left: auto; margin-right: auto; }
+/* 폭 제한은 본문 기둥이 좁은 섹션에만 — 전역으로 걸면 넓은 그리드와 제목이 어긋난다 */
+.pain .section-title, .pain .section-sub,
+.process .section-title, .process .section-sub { max-width: 780px; margin-left: auto; margin-right: auto; }
 .section-title { font-size: clamp(30px, 5vw, 46px); font-weight: 800; line-height: 1.2;
     letter-spacing: -0.01em; margin-bottom: 14px; }
 .section-sub { color: var(--ink-dim); font-size: 17px; margin-bottom: 40px; }
