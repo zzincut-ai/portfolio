@@ -204,9 +204,10 @@ img { max-width: 100%; display: block; }
     padding: 52px 38px; text-align: center; box-shadow: var(--shadow-lg); }
 .dark-band p { font-size: clamp(22px, 3.4vw, 32px); font-weight: 700; line-height: 1.5; }
 /* 검은 배경 위 파랑은 묻힌다 — 흰 외곽선을 둘러 띄운다 (2026-08-24 준범 지적) */
-.dark-band b { color: #2743C7;
-    text-shadow: 0 0 8px rgba(255, 255, 255, .95), 0 0 20px rgba(255, 255, 255, .7),
-        0 0 42px rgba(120, 170, 255, .55); }
+/* 강조 한 줄은 파란 판에 흰 글자로 얹는다 — 검은 배경에서 가장 또렷하다 */
+.dark-band b { display: inline-block; background: var(--accent); color: #fff;
+    border-radius: 6px; padding: .04em .22em .1em; text-shadow: none;
+    box-shadow: 0 6px 20px rgba(39, 67, 199, .45); }
 
 /* 홈 하단 간격 — 무료 코너와 마지막 밴드를 붙인다 */
 #view-home .free { padding-bottom: 36px; }
@@ -507,7 +508,9 @@ img { max-width: 100%; display: block; }
     /* 문제 제기 섹션은 왼쪽 정렬 유지 (2026-08-24 준범 지시) */
     .pain .section-title, .pain .section-sub { text-align: left; }
     .pain-card, .stack-band { text-align: center; }
-    .pain-card p, .stack-band p { text-align: left; }
+    /* 글줄은 왼쪽 정렬, 덩어리는 가운데 (2026-08-24 준범 지시) */
+    .pain-card p, .stack-band p { text-align: left;
+        width: fit-content; max-width: 100%; margin-left: auto; margin-right: auto; }
 
     /* 6) 히어로 버튼 두 개 — 폭을 같게 */
     .hero-actions { gap: 10px; width: 100%; }
