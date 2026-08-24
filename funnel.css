@@ -515,8 +515,12 @@ img { max-width: 100%; display: block; }
     .filter::-webkit-scrollbar { display: none; }
     .chip-btn { flex: 0 0 auto; white-space: nowrap; }
 
-    /* 2) 손가락으로 누를 자리 확보 — 최소 44px */
+    /* 2) 손가락으로 누를 자리 확보 — 최소 44px.
+       탭 영역만 넓히고 밑줄은 글자 바로 아래에 붙여 상단바 안에서 가운데를 지킨다 */
     .nav-links a { padding: 12px 0; }
+    .nav-links a::after { bottom: 11px; }
+    /* 제목은 화면 전체 기준으로 가운데 — 흰 카드 쪽으로 밀던 34px을 뺀다 */
+    .process .section-title { padding-left: 0; }
     .footer-links { gap: 10px; }
     .footer-links a { padding: 10px 8px; }
 
