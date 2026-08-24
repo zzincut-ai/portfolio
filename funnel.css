@@ -458,6 +458,9 @@ img { max-width: 100%; display: block; }
 .lightbox-close { position: absolute; top: -46px; right: 0; width: 38px; height: 38px; border-radius: 50%;
     border: 0; background: rgba(255,255,255,.92); font-size: 22px; cursor: pointer; line-height: 1; }
 
+/* 모바일에서만 줄을 나누는 태그 — 데스크톱에서는 앞의 공백만 남아 한 줄로 이어진다 */
+.br-mo { display: none; }
+
 /* 리빌 */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.on { opacity: 1; transform: none; }
@@ -524,6 +527,7 @@ img { max-width: 100%; display: block; }
     .section-title, .section-sub { text-align: center; }
     /* 문제 제기 섹션은 왼쪽 정렬 유지 (2026-08-24 준범 지시) */
     .pain .section-title, .pain .section-sub { text-align: left; }
+    .br-mo { display: inline; }
     .pain-card, .stack-band { text-align: center; }
     /* 글줄은 왼쪽 정렬, 덩어리는 가운데 (2026-08-24 준범 지시) */
     .pain-card p, .stack-band p { text-align: left;
