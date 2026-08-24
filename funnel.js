@@ -295,6 +295,10 @@ if (qf) {
             { method: "POST", mode: "no-cors", body: data }).catch(() => {});
         qf.querySelectorAll(".qf-grid, .qf-full, .qf-consent, .qf-submit, .qf-alt").forEach((el) => el.style.display = "none");
         document.getElementById("qfDone").hidden = false;
+        // 접수가 끝난 뒤에도 「메일로 주셔도 돼요」가 남아 있으면 방금 남긴 사람에게
+        // 한 번 더 뭔가 하라는 말로 읽힌다 (2026-08-24 준범 지적)
+        const sub = document.getElementById("contactSub");
+        if (sub) sub.style.display = "none";
         // 이 사이트에서 유일하게 「돈이 되는 행동」이다. 전환 목표로 잡을 이벤트
         ga("generate_lead", { method: "빠른 상담 폼" });
     });
