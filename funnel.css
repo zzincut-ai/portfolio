@@ -191,9 +191,11 @@ img { max-width: 100%; display: block; }
     color: #3c4150; line-height: 1.5; filter: none; }
 
 /* 문제 제기 + 다크 밴드 */
-.pain-card { background: var(--card); border-radius: var(--radius); padding: 34px 34px;
-    box-shadow: var(--shadow); max-width: 760px; margin: 0 auto 26px; }
-.pain-card p { color: #3c4150; font-size: 17px; line-height: 1.85; margin-bottom: 14px; }
+/* 검은 밴드와 같은 폭으로 두고, 안의 글과 버튼만 가운데 기둥에 세운다 (2026-08-24 준범 지시) */
+.pain-card { background: var(--card); border-radius: var(--radius); padding: 44px 34px;
+    box-shadow: var(--shadow); margin: 0 auto 26px; text-align: center; }
+.pain-card p { color: #3c4150; font-size: 17px; line-height: 1.85; margin: 0 auto 14px;
+    text-align: left; width: fit-content; max-width: 100%; }
 .pain-card b { color: var(--accent-deep); }
 .pain-card a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-deep);
     font-weight: 800; font-size: 15px; padding: 11px 18px; border-radius: 999px;
@@ -253,8 +255,8 @@ img { max-width: 100%; display: block; }
 
 /* 섹션 타이틀 */
 /* 폭 제한은 본문 기둥이 좁은 섹션에만 — 전역으로 걸면 넓은 그리드와 제목이 어긋난다 */
-.pain .section-title, .pain .section-sub,
 .process .section-title, .process .section-sub { max-width: 780px; margin-left: auto; margin-right: auto; }
+.pain .section-title, .pain .section-sub { text-align: center; }
 .section-title { font-size: clamp(30px, 5vw, 46px); font-weight: 800; line-height: 1.2;
     letter-spacing: -0.01em; margin-bottom: 14px; }
 .section-sub { color: var(--ink-dim); font-size: 17px; margin-bottom: 40px; }
