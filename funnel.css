@@ -154,6 +154,8 @@ img { max-width: 100%; display: block; }
     background: #e8efff; padding: 7px 14px; border-radius: 999px; margin-bottom: 16px; }
 .hero-sub { font-size: clamp(16px, 2.2vw, 19px); color: var(--ink-dim); margin-top: 24px; }
 .hero-actions { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+/* 나란히 놓인 버튼은 글자 수가 달라도 같은 크기로 (2026-08-24 준범 지시) */
+.hero-actions .btn { min-width: 216px; }
 .cat-row { margin-top: 28px; }
 .cat-head { display: inline-flex; align-items: center; gap: 10px; font-size: 21px;
     font-weight: 800; color: var(--ink); margin-bottom: 12px; }
