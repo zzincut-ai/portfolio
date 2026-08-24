@@ -278,7 +278,9 @@ img { max-width: 100%; display: block; }
 
 /* 진행 방식 타임라인 */
 .steps { list-style: none; margin-bottom: 72px; position: relative; padding-left: 34px; }
-.steps::before { content: ""; position: absolute; left: 15px; top: 12px; bottom: 12px;
+/* 세로선은 첫 카드 맨 위에서 시작해 마지막 카드 맨 아래에서 끝난다 (2026-08-24 준범 지시)
+   li의 margin-bottom은 steps 높이에 이미 포함되지 않으므로 0으로 둔다 */
+.steps::before { content: ""; position: absolute; left: 15px; top: 0; bottom: 0;
     width: 2px; background: linear-gradient(#2743C7, #b7ccff); border-radius: 2px; }
 .steps li { display: flex; gap: 18px; align-items: flex-start; background: var(--card);
     border-radius: 18px; padding: 20px 24px; margin-bottom: 14px; box-shadow: var(--shadow);
