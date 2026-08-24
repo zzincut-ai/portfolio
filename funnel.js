@@ -291,6 +291,10 @@ if (qf) {
     qf.addEventListener("submit", (e) => {
         e.preventDefault();
         const data = new FormData(qf);
+        // 이 구글폼은 2페이지짜리다. 「어느 페이지를 거쳐 왔는지」를 같이 보내지 않으면
+        // 뒷장(업체명·광고 집행·예산·하고 싶은 말)이 통째로 버려진다.
+        // 2026-08-24 준범이 「내용이 빠져 있다」고 잡아내서 찾았다.
+        data.append("pageHistory", "0,1");
         fetch("https://docs.google.com/forms/d/e/1FAIpQLScI6tUpXeY5mxHbeXp79N9IcTDS84xH9oD_nNPBa_Au6Ka01Q/formResponse",
             { method: "POST", mode: "no-cors", body: data }).catch(() => {});
         qf.querySelectorAll(".qf-grid, .qf-full, .qf-consent, .qf-submit, .qf-alt").forEach((el) => el.style.display = "none");
