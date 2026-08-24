@@ -548,7 +548,8 @@ img { max-width: 100%; display: block; }
 
     /* 4) 상단 바 — 「상담 신청」이 두 줄로 접히던 것을 한 줄로 */
     .btn-nav { white-space: nowrap; }
-    .nav-links { flex: 1 1 auto; min-width: 0; }
+    /* 로고와 상담 신청은 양끝 고정, 메뉴는 그 사이 공간의 한가운데 (2026-08-24 준범 지시) */
+    .nav-links { flex: 1 1 auto; min-width: 0; justify-content: center; }
 }
 @media (max-width: 400px) {
     .nav { padding: 0 10px; gap: 6px; }
