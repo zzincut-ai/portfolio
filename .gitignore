@@ -1,2 +1,9 @@
 assets/videos/*.mp4
 !assets/videos/.gitkeep
+
+# 내부 도구 — GitHub Pages는 저장소를 그대로 서빙하므로 배포 스크립트를 올리지 않는다
+chatbot/deploy.py
+chatbot/local_proxy.py
+
+# 작업 중 만든 점검 스크린샷
+tools/*.png

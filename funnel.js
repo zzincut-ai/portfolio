@@ -48,6 +48,9 @@ function goto(name) {
     });
     const fc = document.getElementById("floatCta");
     if (fc) fc.classList.toggle("hide", name === "contact" || name === "store");
+    // 상담 화면에서는 챗봇 버튼도 접는다 — 폼 위에 겹쳐 입력을 가리기 때문
+    const cb = document.getElementById("zzc-btn");
+    if (cb) cb.style.display = (name === "contact") ? "none" : "flex";
     updateNavShadow();
     updateDotGrid();
 }
@@ -284,7 +287,7 @@ if (qf) {
 const FOOTER = `
 <footer class="footer">
     <div class="footer-brand">
-        <img src="assets/images/회사로고_찐컷.png" alt="찐컷">
+        <img src="assets/logo/zzincut-logo.svg" alt="찐컷 ZZINCUT">
         <p>팔리는 영상을 만드는 회사</p>
     </div>
     <div class="footer-links">
