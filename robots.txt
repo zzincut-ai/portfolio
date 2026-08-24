@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# 짧은 주소(넘겨주기 전용)는 색인하지 않는다 — 본문이 없어 검색 결과를 어지럽힌다
+Disallow: /t/
+Disallow: /i/
+Disallow: /y/
+Disallow: /tt/
+Disallow: /n/
+Disallow: /d/
+
 Sitemap: https://zzincut.com/sitemap.xml
