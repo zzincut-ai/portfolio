@@ -34,7 +34,9 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-WMXG6HBQ75');
+      // 이 사이트는 화면을 갈아끼우는 방식이라 첫 페이지뷰만 잡히고 나머지가 안 잡힌다.
+      // 그래서 자동 페이지뷰를 끄고 funnel.js 의 goto() 가 화면마다 직접 보낸다.
+      gtag('config', 'G-WMXG6HBQ75', { send_page_view: false });
     </script>
 
     <!-- 구글이 회사 정보를 사람 손 없이 읽어가도록 (검색 결과 갱신용) -->
@@ -420,7 +422,7 @@
         </div>
     </div>
 
-    <script src="funnel.js?v=13"></script>
-    <script src="chatbot/widget.js?v=7"></script>
+    <script src="funnel.js?v=14"></script>
+    <script src="chatbot/widget.js?v=8"></script>
 </body>
 </html>

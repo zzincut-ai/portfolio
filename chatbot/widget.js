@@ -40,7 +40,13 @@
     const d = document.createElement("div"); d.className = "zzc-m " + (role === "user" ? "zzc-u" : "zzc-a");
     d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
   }
-  btn.onclick = () => { box.classList.toggle("open"); if (!log.children.length) add("assistant", HELLO); input.focus(); };
+  btn.onclick = () => {
+    box.classList.toggle("open");
+    if (!log.children.length) add("assistant", HELLO);
+    input.focus();
+    // 챗봇을 여는 건 상담 직전 행동이다 — 상담 폼 전환의 앞 단계로 같이 본다
+    if (box.classList.contains("open") && typeof gtag === "function") gtag("event", "open_chat");
+  };
   box.querySelector("header button").onclick = () => box.classList.remove("open");
   let busy = false, sent = 0;
   form.onsubmit = async (e) => {

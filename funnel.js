@@ -30,6 +30,15 @@ const thumb = (w) => `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`;
 const thumbVert = (w) => `https://i.ytimg.com/vi/${w.id}/oar2.jpg`;
 const fallback = (img, w) => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`; };
 
+// ── 계측: 애널리틱스로 보낼 것만 한 곳에 모은다 ────────
+// 차단기를 쓰는 방문자에게는 gtag 가 아예 없다. 그때 화면이 죽으면 안 되므로
+// 여기서 한 번만 막아준다 — 부르는 쪽은 gtag 가 있는지 신경 쓰지 않는다.
+const VIEW_NAME = { home: "홈", works: "포트폴리오", think: "생각", store: "스토어", contact: "상담" };
+function ga(event, params = {}) {
+    if (typeof gtag !== "function") return;
+    gtag("event", event, params);
+}
+
 // ── 화면 라우터: 옆으로 슬라이드 ───────────────────────
 const VIEW_ORDER = ["home", "works", "think", "store", "contact"];
 const ALIAS = { top: "home", free: "store", faq: "contact", process: "home", ebook: "store", diag: "store" };
@@ -53,6 +62,12 @@ function goto(name) {
     if (cb) cb.style.display = (name === "contact") ? "none" : "flex";
     updateNavShadow();
     updateDotGrid();
+    // 화면 하나를 페이지 하나로 센다. 이게 있어야 「어디까지 보고 나갔나」가 보인다
+    ga("page_view", {
+        page_path: "/#" + name,
+        page_title: "찐컷 — " + (VIEW_NAME[name] || name),
+        page_location: location.origin + location.pathname + "#" + name,
+    });
 }
 function route() { goto((location.hash || "#home").replace(/^#\/?/, "")); }
 document.addEventListener("click", (e) => {
@@ -280,6 +295,8 @@ if (qf) {
             { method: "POST", mode: "no-cors", body: data }).catch(() => {});
         qf.querySelectorAll(".qf-grid, .qf-full, .qf-consent, .qf-submit, .qf-alt").forEach((el) => el.style.display = "none");
         document.getElementById("qfDone").hidden = false;
+        // 이 사이트에서 유일하게 「돈이 되는 행동」이다. 전환 목표로 잡을 이벤트
+        ga("generate_lead", { method: "빠른 상담 폼" });
     });
 }
 
@@ -320,3 +337,12 @@ const sweep = setInterval(() => {
 // ── 시작 — 모든 선언이 끝난 뒤에 첫 라우팅을 돈다 ──────
 route();
 updateDotGrid();
+
+// ── 밖으로 나가는 클릭 — 유튜브·인스타·상세 질문지 ─────
+// 개별 링크마다 코드를 붙이면 링크가 늘 때마다 빠뜨린다. 문서 하나에서 잡는다.
+document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="http"], a[href^="mailto:"]');
+    if (!a) return;
+    if (a.hostname === location.hostname) return;
+    ga("click_outbound", { link_url: a.href, link_text: (a.textContent || "").trim().slice(0, 40) });
+});
