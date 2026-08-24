@@ -561,3 +561,8 @@ img { max-width: 100%; display: block; }
     .marquee-track, .blob { animation: none; }
     .views { transition: none; }
 }
+
+/* 사업자 정보 푸터 (상담 화면 맨 아래) */
+.biz-footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; }
+.biz-footer p { margin: 4px 0; font-size: 12px; line-height: 1.6; color: var(--ink-dim); }
+.biz-footer a { color: var(--ink-dim); text-decoration: underline; }
