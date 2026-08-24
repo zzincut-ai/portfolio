@@ -193,7 +193,7 @@ img { max-width: 100%; display: block; }
 /* 문제 제기 + 다크 밴드 */
 /* 검은 밴드와 같은 폭으로 두고, 안의 글과 버튼만 가운데 기둥에 세운다 (2026-08-24 준범 지시) */
 .pain-card { background: var(--card); border-radius: var(--radius); padding: 44px 34px;
-    box-shadow: var(--shadow); margin: 0 auto 26px; text-align: center; }
+    box-shadow: var(--shadow); margin: 0 auto; text-align: center; }
 .pain-card p { color: #3c4150; font-size: 17px; line-height: 1.85; margin: 0 auto 14px;
     text-align: left; width: fit-content; max-width: 100%; }
 .pain-card b { color: var(--accent-deep); }
@@ -203,7 +203,8 @@ img { max-width: 100%; display: block; }
 .pain-card a:hover { background: var(--accent); color: #fff; transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(59, 123, 255, .35); }
 .dark-band { background: #14161d; color: #fff; border-radius: var(--radius);
-    padding: 52px 38px; text-align: center; box-shadow: var(--shadow-lg); }
+    padding: 52px 38px; text-align: center; box-shadow: var(--shadow-lg);
+    margin-bottom: 26px; }
 .dark-band p { font-size: clamp(22px, 3.4vw, 32px); font-weight: 700; line-height: 1.5; }
 /* 검은 배경 위 파랑은 묻힌다 — 흰 외곽선을 둘러 띄운다 (2026-08-24 준범 지적) */
 /* 강조 한 줄은 파란 판에 흰 글자로 얹는다 — 검은 배경에서 가장 또렷하다 */
@@ -327,8 +328,10 @@ img { max-width: 100%; display: block; }
 
 /* ── 찐컷의 생각 ────────────────────────────────────── */
 .think .chip { margin-bottom: 14px; }
-.essay { background: var(--card); border-radius: var(--radius); padding: 38px 36px;
-    box-shadow: var(--shadow); margin: 0 auto 22px; max-width: 780px; }
+/* 아래 카드 3열과 같은 폭으로 두고, 글줄만 안에서 제한한다 — 어깨를 맞춘다 */
+.essay { background: var(--card); border-radius: var(--radius); padding: 40px 36px;
+    box-shadow: var(--shadow); margin: 0 auto 22px; }
+.essay > *, .essay h3, .essay p { max-width: 720px; margin-left: auto; margin-right: auto; }
 .essay h3 { font-size: 23px; margin-bottom: 14px; letter-spacing: -0.01em; }
 .essay p { color: #3c4150; font-size: 16.5px; margin-bottom: 12px; line-height: 1.85; }
 .essay p:last-child { margin-bottom: 0; }
