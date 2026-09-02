@@ -3,6 +3,7 @@
 
 const WORKS = [
     // 생존 시리즈 (2026-09 발행, 소상공인 앱 브랜드 캠페인 — 업체명 비노출). 공개되는 대로 한 줄씩 추가
+    { id: "mXKz27YS7c0", t: "생존 – 창업 혼자 버티던 시절", cat: "소상공인 캠페인", shorts: true },
     { id: "9JWS9XTZZeU", t: "생존 – 장사도 텐션이다", cat: "소상공인 캠페인", shorts: true },
     { id: "vmFhFigiCFg", t: "찐컷이 만들면 다르다", cat: "로컬 브랜드 & B2B", shorts: true },
     { id: "PnkucL3sZdM", t: "비트를 입은 AI 런웨이, ZZINSINSA", cat: "패션 & 라이프스타일" },
