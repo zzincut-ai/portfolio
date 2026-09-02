@@ -97,12 +97,16 @@ if (stage) {
     const vids = Array.from(stage.querySelectorAll("video"));
     let vi = 0;
     let switching = false;
+    // 루프가 7개라 전부 미리 받으면 첫 화면이 3MB다. 앞 둘만 preload=auto 로 두고,
+    // 나머지는 "다음 차례" 가 됐을 때 받기 시작한다 (한 클립 6초면 받을 시간이 넉넉하다).
+    const prime = (i) => { const v = vids[i]; if (v && v.preload !== "auto") { v.preload = "auto"; v.load(); } };
     function advance() {
         if (switching) return;
         switching = true;
         const cur = vids[vi];
         vi = (vi + 1) % vids.length;
         const nxt = vids[vi];
+        prime((vi + 1) % vids.length);
         nxt.currentTime = 0;
         nxt.play().catch(() => {});
         nxt.classList.add("live");
@@ -118,6 +122,7 @@ if (stage) {
     });
     vids[0].play().catch(() => {});
     vids[0].classList.add("live");
+    prime(1);
     // 카드 덱 클릭 → 포트폴리오 화면
     const deck = stage.closest(".stage-deck");
     if (deck) deck.addEventListener("click", () => { location.hash = "works"; });
