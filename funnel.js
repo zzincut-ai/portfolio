@@ -2,6 +2,8 @@
 // 갤러리 분류·순서·규격(전부 16:9)은 대표가 만든 원본(app.js)을 그대로 이식했다.
 
 const WORKS = [
+    // 생존 시리즈 (2026-09 발행, 소상공인 앱 브랜드 캠페인 — 업체명 비노출). 공개되는 대로 한 줄씩 추가
+    { id: "9JWS9XTZZeU", t: "생존 – 장사도 텐션이다", cat: "소상공인 캠페인", shorts: true },
     { id: "vmFhFigiCFg", t: "찐컷이 만들면 다르다", cat: "로컬 브랜드 & B2B", shorts: true },
     { id: "PnkucL3sZdM", t: "비트를 입은 AI 런웨이, ZZINSINSA", cat: "패션 & 라이프스타일" },
     { id: "AaniZWiMDRI", t: "오감을 깨우는 바삭함의 미학, 찐컷 치킨", cat: "F&B & 프랜차이즈" },
