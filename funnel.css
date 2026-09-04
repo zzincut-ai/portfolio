@@ -280,6 +280,7 @@ img { max-width: 100%; display: block; }
 .tag { display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 800; }
 .tag-free { background: #e3f6e9; color: #1d9a4e; }
 .tag-soon { background: #fff0e0; color: #d97a1a; }
+.tag-sale { background: #e6ebfb; color: var(--accent); }
 
 /* 진행 방식 타임라인 */
 .steps { list-style: none; margin-bottom: 72px; position: relative; padding-left: 34px; }
@@ -406,6 +407,12 @@ img { max-width: 100%; display: block; }
 .store-price b { font-size: 24px; font-weight: 800; color: var(--ink); }
 .store-price span { font-size: 13px; color: var(--ink-dim); }
 .store-body .btn { margin-top: auto; }
+/* 전자책 카드 — 실제 표지 이미지 (책 목업 대신). 2026-09-04 래피드 판매 개시 반영 */
+.book-img { width: 34%; height: auto; aspect-ratio: 2/3; object-fit: cover; border-radius: 6px 14px 14px 6px;
+    box-shadow: 14px 22px 40px rgba(23,40,90,.22); transform: rotate(-4deg); transition: transform .4s; }
+.store-card:hover .book-img { transform: rotate(-1deg) translateY(-6px); }
+.store-actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+.store-actions .btn { margin-top: 0; flex: 1 1 auto; text-align: center; white-space: nowrap; }
 
 /* ── 상담: FAQ + 폼 ─────────────────────────────────── */
 .faq { margin-top: 72px; text-align: left; }
