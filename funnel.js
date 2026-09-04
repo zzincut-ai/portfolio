@@ -65,6 +65,15 @@ function goto(name) {
     if (cb) cb.style.display = (name === "contact") ? "none" : "flex";
     updateNavShadow();
     updateDotGrid();
+    // 「생각」 화면의 카드 루프는 그 화면에 들어왔을 때만 받아서 돌린다 (2026-09-04) — 다른 화면에서 3개 500KB를 미리 받지 않는다
+    document.querySelectorAll(".note-loop").forEach((v) => {
+        if (name === "think") {
+            if (!v.src) v.src = v.dataset.src;
+            v.play().catch(() => {});
+        } else if (v.src) {
+            v.pause();
+        }
+    });
     // 화면 하나를 페이지 하나로 센다. 이게 있어야 「어디까지 보고 나갔나」가 보인다
     ga("page_view", {
         page_path: "/#" + name,
