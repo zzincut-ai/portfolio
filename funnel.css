@@ -377,7 +377,7 @@ img { max-width: 100%; display: block; }
 .vs dd { margin: 0; font-size: 16.5px; line-height: 1.7; color: #3c4150; }
 .vs-row.is-on dt { background: var(--accent); color: #fff; }
 .vs-row.is-on dd { color: var(--ink); font-weight: 700; font-size: 19px; }
-.think-head { display: grid; grid-template-columns: 110px 1fr; gap: 18px; align-items: end; margin-bottom: 28px; }
+.think-head { display: grid; grid-template-columns: 110px 1fr; gap: 18px; align-items: end; margin-bottom: 0; }  /* 칩 밑단 = 캐릭터 발 = 카드 윗선 (준범 12:28) */
 .think-figure { width: 110px; height: auto; filter: drop-shadow(10px 18px 30px rgba(23,40,90,.18)); }
 .think-head .section-title { margin-bottom: 8px; }
 .think-lead { font-size: 18px; color: var(--ink-dim); line-height: 1.6; }
@@ -386,7 +386,7 @@ img { max-width: 100%; display: block; }
 .think-creds li { padding: 7px 14px; border-radius: 999px; background: var(--accent); border: 0;
     font-size: 13px; font-weight: 700; color: #fff; box-shadow: 0 8px 20px rgba(39,67,199,.25); }
 /* 캐릭터 발을 글 덩어리 밑선에 맞춘다 (준범 11:23 「위치」 메모) */
-.think-figure { margin-bottom: -28px; position: relative; z-index: 2; }  /* 발이 아래 흰 카드 윗선에 닿게 (준범 11:38 「배경 밑줄에 맞춰」) */
+.think-figure { margin-bottom: 0; position: relative; z-index: 2; }  /* 발이 아래 흰 카드 윗선에 닿게 (준범 11:38 「배경 밑줄에 맞춰」) */
 .note-card { display: flex; flex-direction: column; position: relative; }
 /* 카드 오른쪽 아래 캐릭터 포즈 (준범이 플로우로 만든 2장, 2026-09-04) — 글 줄이 캐릭터 뒤로 안 들어가게 오른쪽 여백 */
 .note-figure { position: absolute; right: 12px; bottom: 10px; width: 78px; height: auto;
