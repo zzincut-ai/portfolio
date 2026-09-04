@@ -69,7 +69,9 @@ function goto(name) {
     ga("page_view", {
         page_path: "/#" + name,
         page_title: "찐컷 — " + (VIEW_NAME[name] || name),
-        page_location: location.origin + location.pathname + "#" + name,
+        // location.search 를 빼먹으면 ?utm_ 꼬리표가 통째로 사라진다 — 2026-09-04 11일치 유입에
+        // 꼬리표 세션이 0건이던 원인. 프로필엔 걸려 있었는데 사이트가 지우고 있었다
+        page_location: location.origin + location.pathname + location.search + "#" + name,
     });
 }
 function route() { goto((location.hash || "#home").replace(/^#\/?/, "")); }
