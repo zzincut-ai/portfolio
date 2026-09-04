@@ -348,7 +348,7 @@ img { max-width: 100%; display: block; }
 /* 「찐컷의 생각」 2026-09-04 개편 — 캐릭터 머리, 카드 루프, 끝 CTA */
 .essay-key { font-size: 20px; line-height: 1.5; color: var(--ink); margin: 18px auto 18px; }
 .essay-key b { display: inline-block; margin-top: 4px; font-size: 26px; color: var(--accent); letter-spacing: -0.01em; }
-.essay-key .key-fill { background: var(--accent); color: #fff; padding: 3px 10px 5px; border-radius: 10px; margin-top: 8px; }
+.essay-key .key-fill { background: var(--accent); color: #fff; padding: 1px 10px 3px; line-height: 1.15; border-radius: 8px; margin-top: 8px; }
 /* 글 옆 세로 영상 (준범 11:51 「사진 같은 게 옆에 세로형으로」) */
 .essay.with-media { display: grid; grid-template-columns: 150px 1fr; gap: 32px; align-items: stretch; }  /* 사진은 왼쪽, 머리 캐릭터와 같은 자리 (준범 11:57) */
 .essay.with-media > * { max-width: none; margin-left: 0; margin-right: 0; }
