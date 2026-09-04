@@ -348,6 +348,18 @@ img { max-width: 100%; display: block; }
 /* 「찐컷의 생각」 2026-09-04 개편 — 캐릭터 머리, 카드 루프, 끝 CTA */
 .essay-key { font-size: 20px; line-height: 1.5; color: var(--ink); margin: 18px auto 18px; }
 .essay-key b { display: inline-block; margin-top: 4px; font-size: 26px; color: var(--accent); letter-spacing: -0.01em; }
+.essay-key .key-fill { background: var(--accent); color: #fff; padding: 6px 16px 8px; border-radius: 12px; margin-top: 8px; }
+/* 글 옆 세로 영상 (준범 11:51 「사진 같은 게 옆에 세로형으로」) */
+.essay.with-media { display: grid; grid-template-columns: 1fr 210px; gap: 32px; align-items: stretch; }
+.essay.with-media > * { max-width: none; margin-left: 0; margin-right: 0; }
+.essay-text { max-width: 620px; align-self: center; }
+.essay-text .compare { margin-left: 0; }
+.essay-media { width: 100%; height: 100%; min-height: 330px; max-height: 420px; object-fit: cover; border-radius: 16px; background: #e9edf6;
+    box-shadow: 14px 22px 40px rgba(23,40,90,.18); }
+@media (max-width: 720px) {
+    .essay.with-media { grid-template-columns: 1fr; }
+    .essay-media { width: 60%; margin: 0 auto; height: auto; aspect-ratio: 9/16; min-height: 0; }
+}
 .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 720px; margin: 0 auto 18px; }
 .compare-col { border-radius: 14px; padding: 18px 20px; background: #f3f5fa; }
 .compare-col.is-on { background: #e8efff; box-shadow: inset 0 0 0 2px var(--accent); }
@@ -356,14 +368,14 @@ img { max-width: 100%; display: block; }
 .compare-col p { margin: 0 0 6px; font-size: 15.5px; line-height: 1.6; color: #3c4150; }
 .compare-col.is-on p { color: var(--ink); font-weight: 600; }
 @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
-.think-head { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: end; margin-bottom: 28px; }
+.think-head { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: end; margin-bottom: 28px; }
 .think-figure { width: 180px; height: auto; filter: drop-shadow(10px 18px 30px rgba(23,40,90,.18)); }
 .think-head .section-title { margin-bottom: 8px; }
 .think-lead { font-size: 18px; color: var(--ink-dim); line-height: 1.6; }
 /* 이력 칩 — 회사소개자료에서 원본 대조된 것만 (2026-09-04 준범 「40만 말고 뭐 없나」) */
 .think-creds { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.think-creds li { padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
-    font-size: 13px; font-weight: 700; color: var(--ink); box-shadow: var(--shadow); }
+.think-creds li { padding: 7px 14px; border-radius: 999px; background: var(--accent); border: 0;
+    font-size: 13px; font-weight: 700; color: #fff; box-shadow: 0 8px 20px rgba(39,67,199,.25); }
 /* 캐릭터 발을 글 덩어리 밑선에 맞춘다 (준범 11:23 「위치」 메모) */
 .think-figure { margin-bottom: -28px; position: relative; z-index: 2; }  /* 발이 아래 흰 카드 윗선에 닿게 (준범 11:38 「배경 밑줄에 맞춰」) */
 .note-card { display: flex; flex-direction: column; position: relative; }
