@@ -351,8 +351,11 @@
             <!-- ══════════ 5. 상담 ══════════ -->
             <section class="view" id="view-contact" data-view="contact">
                 <section class="contact">
-                    <h2 class="section-title reveal">상담 신청</h2>
-                    <p class="section-sub reveal" id="contactSub">폼을 남겨주시면 영업일 4시간 안에 연락드려요 (평일 13~18시)<br>
+                    <!-- 무료 제작 캠페인 중 (2026-09-04~): 홈페이지 상담 = 무료 제작 신청. 캠페인이 끝나면 이 화면의 문구·신청서 링크를
+                         원래 상담 폼 흐름으로 되돌린다 (기억 switch-intake-form-when-paid-demand-comes · journal/open-loops.md) -->
+                    <h2 class="section-title reveal">무료 제작 신청</h2>
+                    <p class="section-sub reveal" id="contactSub">지금은 소상공인 대표님 몇 분께 광고 영상을 무료로 만들어 드리고 있어요<br>
+                    남겨주시면 1분짜리 신청서를 드리고, 선정되면 연락드려요 (평일 13~18시)<br>
                     메일이 편하시면 <a href="mailto:zzincut@gmail.com">zzincut@gmail.com</a> 으로 주셔도 돼요</p>
                     <form class="quick-form reveal" id="quickForm">
                         <div class="qf-grid">
@@ -361,7 +364,7 @@
                         </div>
                         <label class="qf-full">이메일
                             <input type="email" name="entry.1818269060" required placeholder="you@example.com">
-                            <small class="qf-hint">여기로 상세 질문지를 보내드려요</small>
+                            <small class="qf-hint">여기로 신청서와 선정 결과를 보내드려요</small>
                         </label>
                         <label class="qf-consent">
                             <input type="checkbox" required>
@@ -370,10 +373,11 @@
                             (상담 미진행 시 즉시 파기) · 동의를 거부할 수 있으나 미동의 시 접수가 제한될 수 있어요 · <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></small></span>
                         </label>
                         <input type="hidden" name="entry.1399317845" value="동의함">
-                        <button type="submit" class="btn btn-primary qf-submit">상담 신청 보내기</button>
+                        <button type="submit" class="btn btn-primary qf-submit">무료 제작 신청하기</button>
                         <div class="qf-done" id="qfDone" hidden>
                             <b>접수됐어요!</b>
-                            <p>남겨주신 메일로 질문지를 보내드렸어요<br> 답해주시면 상담 때 콘티까지 준비해 갈게요</p>
+                            <p>아래 신청서를 1분만 채워주시면 검토 후 선정 결과를 연락드려요<br> 같은 신청서를 메일로도 보내드릴게요</p>
+                            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLScqkMdrLfc-BrYqvNYFJquyQFDdUfuyUsLj1J6xbDE1-qxKZw/viewform" target="_blank" rel="noopener">신청서 열기 (1분)</a>
                         </div>
                     </form>
 
