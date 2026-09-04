@@ -389,9 +389,9 @@ img { max-width: 100%; display: block; }
 .think-figure { margin-bottom: 0; position: relative; z-index: 2; }  /* 발이 아래 흰 카드 윗선에 닿게 (준범 11:38 「배경 밑줄에 맞춰」) */
 .note-card { display: flex; flex-direction: column; position: relative; }
 /* 카드 오른쪽 아래 캐릭터 포즈 (준범이 플로우로 만든 2장, 2026-09-04) — 글 줄이 캐릭터 뒤로 안 들어가게 오른쪽 여백 */
-.note-figure { position: absolute; right: 12px; bottom: 10px; width: 78px; height: auto;
+.note-figure { position: absolute; right: 12px; bottom: 10px; height: 132px; width: auto;  /* 높이 기준으로 맞춰 두 포즈 크기 동일 (준범 12:32) */
     filter: drop-shadow(6px 10px 16px rgba(23,40,90,.18)); pointer-events: none; }
-.note-card p.has-figure { padding-right: 84px; }
+.note-card p.has-figure { padding-right: 94px; }
 .note-key { display: block; color: var(--accent); font-weight: 800; font-size: 17px; line-height: 1.4; margin: 8px 0 10px; }
 .note-card p { line-height: 1.75; }
 .note-loop { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: 50% 30%; border-radius: 12px; margin-bottom: 14px; background: #e9edf6; }
