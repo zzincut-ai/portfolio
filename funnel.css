@@ -350,6 +350,12 @@ img { max-width: 100%; display: block; }
 .think-figure { width: 180px; height: auto; filter: drop-shadow(10px 18px 30px rgba(23,40,90,.18)); }
 .think-head .section-title { margin-bottom: 8px; }
 .think-lead { font-size: 18px; color: var(--ink-dim); line-height: 1.6; }
+/* 이력 칩 — 회사소개자료에서 원본 대조된 것만 (2026-09-04 준범 「40만 말고 뭐 없나」) */
+.think-creds { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.think-creds li { padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
+    font-size: 13px; font-weight: 700; color: var(--ink); box-shadow: var(--shadow); }
+/* 캐릭터 발을 글 덩어리 밑선에 맞춘다 (준범 11:23 「위치」 메모) */
+.think-figure { margin-bottom: 4px; }
 .note-card { display: flex; flex-direction: column; position: relative; }
 /* 카드 오른쪽 아래 캐릭터 포즈 (준범이 플로우로 만든 2장, 2026-09-04) — 글 줄이 캐릭터 뒤로 안 들어가게 오른쪽 여백 */
 .note-figure { position: absolute; right: 12px; bottom: 10px; width: 78px; height: auto;
