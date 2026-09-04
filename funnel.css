@@ -355,7 +355,7 @@ img { max-width: 100%; display: block; }
 .think-creds li { padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line);
     font-size: 13px; font-weight: 700; color: var(--ink); box-shadow: var(--shadow); }
 /* 캐릭터 발을 글 덩어리 밑선에 맞춘다 (준범 11:23 「위치」 메모) */
-.think-figure { margin-bottom: 4px; }
+.think-figure { margin-bottom: 0; }
 .note-card { display: flex; flex-direction: column; position: relative; }
 /* 카드 오른쪽 아래 캐릭터 포즈 (준범이 플로우로 만든 2장, 2026-09-04) — 글 줄이 캐릭터 뒤로 안 들어가게 오른쪽 여백 */
 .note-figure { position: absolute; right: 12px; bottom: 10px; width: 78px; height: auto;
