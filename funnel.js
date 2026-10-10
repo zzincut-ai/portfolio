@@ -1,7 +1,10 @@
 // 찐컷 퍼널 사이트 v4 — 5화면 SPA (외부 라이브러리 없음)
 // 갤러리 분류·순서·규격(전부 16:9)은 대표가 만든 원본(app.js)을 그대로 이식했다.
 
-const WORKS = [
+const WORKS_ALL = [
+    // 찐컷 유튜브 공개작 (2026-10-10). from = 유튜브 공개 시각 — 그 전엔 비공개라 재생이 안 되니 목록에서 숨긴다
+    { id: "b0TAZeNsqjY", t: "비 오는 날도 뛰고 싶게 – 조깅화 콘셉트 광고", cat: "패션 & 라이프스타일", shorts: true },
+    { id: "2MRcB7uq-VU", t: "조회수 10만인데 손님은 0명", cat: "소상공인 캠페인", shorts: true, from: "2026-10-12T10:05:00+09:00" },
     // 생존 시리즈 (2026-09 발행, 소상공인 앱 브랜드 캠페인 — 업체명 비노출). 공개되는 대로 한 줄씩 추가
     { id: "Jy_07v3u1IM", t: "생존 – 창업이 이렇게 모르는 것 투성이일 줄 몰랐어요", cat: "소상공인 캠페인", shorts: true },
     { id: "IxqDZsNx_Po", t: "생존 – 문을 닫으려던 밤", cat: "소상공인 캠페인", shorts: true },
@@ -33,6 +36,7 @@ const WORKS = [
     { id: "hWhLHxFVnDA", t: "김소미 – 한 사람의 선택이 만든 길", cat: "실제 촬영/편집" },
     { id: "vfbfMtzbboY", t: "Face ID – 타이포그래피", cat: "실제 촬영/편집" },
 ];
+const WORKS = WORKS_ALL.filter((w) => !w.from || Date.now() >= Date.parse(w.from));
 const thumb = (w) => `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`;
 const thumbVert = (w) => `https://i.ytimg.com/vi/${w.id}/oar2.jpg`;
 const fallback = (img, w) => { img.onerror = null; img.src = `https://i.ytimg.com/vi/${w.id}/hqdefault.jpg`; };
