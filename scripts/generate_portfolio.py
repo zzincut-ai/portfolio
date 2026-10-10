@@ -3,6 +3,10 @@ import json
 import re
 import sys
 
+# 2026-10-10 막음: 이 스크립트는 옛 사이트(app.js·videos.json)용이라 지금 화면에 반영되지 않는다.
+# 영상 올리기는 tools/add_work.py 하나로 한다 (준범 「올려라고 하면 이거 까먹지 마」).
+sys.exit("옛 경로다 — 사이트에 영상 올리기는 python3 tools/add_work.py 를 쓴다")
+
 # Force stdout to use UTF-8 encoding on Windows to prevent UnicodeEncodeError in terminal
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
