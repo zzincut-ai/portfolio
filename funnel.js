@@ -312,26 +312,107 @@ if (track) {
     })(0);
 }
 
-// ── 빠른 상담 폼 → 구글폼으로 제출 ─────────────────────
+// ── 영상 제작 신청서 → Supabase 함수 signup → DB ─────────────
+// 2026-10-29: 예전엔 구글폼(상담 폼) 1쪽으로 no-cors 제출 — 결과를 못 봐서, 폼 2쪽 필수 문항 때문에
+// 저장이 안 돼도 「접수됐어요」를 띄웠다(GA4 신청 6번 / 폼 0건). 이제는 저장됐다는 답을 받은 뒤에만 완료를 띄운다.
+const SIGNUP_URL = "https://nmnpscbddsydlzsjgoeg.supabase.co/functions/v1/signup";
+// 어디서 왔나 — 처음 들어온 주소의 utm_* 와 들어온 곳을 이 탭 동안 기억해 신청과 같이 보낸다(질문은 안 늘린다)
+function firstTouch() {
+    try {
+        const saved = sessionStorage.getItem("zz_touch");
+        if (saved) return JSON.parse(saved);
+        const q = new URLSearchParams(location.search), t = {};
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach((k) => { if (q.get(k)) t[k] = q.get(k); });
+        t.landing = location.pathname + location.search;
+        if (document.referrer && !document.referrer.includes(location.host)) t.referrer = document.referrer.slice(0, 300);
+        sessionStorage.setItem("zz_touch", JSON.stringify(t));
+        return t;
+    } catch { return {}; }
+}
+firstTouch();
 const qf = document.getElementById("quickForm");
 if (qf) {
-    qf.addEventListener("submit", (e) => {
+    const err = document.getElementById("qfErr");
+    const btn = qf.querySelector(".qf-submit");
+    const fail = (msg) => { err.textContent = msg; err.hidden = false; btn.disabled = false; btn.textContent = "영상 제작 신청하기"; };
+
+    // 한 화면에 질문 하나 (2026-10-29 준범). 영상 종류만 꼭 골라야 넘어가고 나머지는 건너뛰어도 된다
+    const steps = [...qf.querySelectorAll(".qf-step")];
+    const bar = document.getElementById("qfBar"), count = document.getElementById("qfCount");
+    const back = document.getElementById("qfBack"), next = document.getElementById("qfNext");
+    let at = 0, maxSeen = -1;
+    const show = (i) => {
+        at = Math.max(0, Math.min(steps.length - 1, i));
+        steps.forEach((s, k) => s.classList.toggle("on", k === at));
+        bar.style.width = ((at + 1) / steps.length * 100) + "%";
+        // 단계별 이탈 — 몇 번째 화면까지 왔나를 GA4 에 남긴다(어느 질문에서 그만두는지 보려고)
+        if (at > maxSeen) { maxSeen = at; try { ga("form_step", { step: at + 1, of: steps.length }); } catch { /* ga 없음 */ } }
+        count.textContent = `${at + 1} / ${steps.length}`;
+        back.style.visibility = at ? "visible" : "hidden";
+        qf.classList.toggle("at-last", at === steps.length - 1);
+        err.hidden = true;
+        const top = qf.getBoundingClientRect().top;
+        if (top < 0) qf.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    const stepOk = () => {
+        const g = steps[at].querySelector('[data-multi="영상 종류"]');
+        if (g && !g.querySelector("input:checked")) { fail("어떤 영상인지 하나 이상 골라 주세요"); return false; }
+        return true;
+    };
+    if (steps.length) {
+        qf.classList.add("stepped");
+        show(0);
+        next.addEventListener("click", () => { if (stepOk()) show(at + 1); });
+        back.addEventListener("click", () => show(at - 1));
+        // 하나만 고르는 질문은 누르면 잠깐 보여 주고 다음으로
+        qf.querySelectorAll('.qf-chips[data-one] input').forEach((r) =>
+            r.addEventListener("change", () => setTimeout(() => show(at + 1), 250)));
+        // 마지막 전 단계에서 엔터를 쳐도 제출되지 않고 다음으로
+        qf.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && e.target.tagName !== "TEXTAREA" && at < steps.length - 1) {
+                e.preventDefault(); if (stepOk()) show(at + 1);
+            }
+        });
+    }
+    qf.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const data = new FormData(qf);
-        // 사이트 폼은 구글폼의 1페이지(동의·이름·연락처·이메일)만 낸다. 상세 17문항은
-        // 접수 뒤 메일로 따로 받는다 (2026-08-24 준범 설계).
-        // 페이지를 명시하지 않으면 구글이 어디까지 왔는지 몰라 저장을 거른다.
-        data.append("pageHistory", "0");
-        fetch("https://docs.google.com/forms/d/e/1FAIpQLScI6tUpXeY5mxHbeXp79N9IcTDS84xH9oD_nNPBa_Au6Ka01Q/formResponse",
-            { method: "POST", mode: "no-cors", body: data }).catch(() => {});
-        qf.querySelectorAll(".qf-grid, .qf-full, .qf-consent, .qf-submit, .qf-alt").forEach((el) => el.style.display = "none");
+        err.hidden = true;
+        const f = new FormData(qf);
+        const body = { name: f.get("name"), phone: f.get("phone"), email: f.get("email"), company: f.get("company"),
+                       note: f.get("note") || "", website: f.get("website") || "", consent: !!f.get("consent"),
+                       consent_version: "v2.5", utm: firstTouch() };
+        qf.querySelectorAll("[data-multi]").forEach((g) => {
+            body[g.dataset.multi] = [...g.querySelectorAll("input:checked")].map((i) => i.value);
+        });
+        qf.querySelectorAll("[data-one]").forEach((g) => {
+            const c = g.querySelector("input:checked"); body[g.dataset.one] = c ? c.value : "";
+        });
+        // 이름·연락처·이메일·업체·영상 종류·동의는 꼭. 나머지 고르기는 비어도 받는다(모르는 손님을 막지 않는다)
+        qf.querySelectorAll(".qf-q").forEach((q) => q.classList.remove("qf-miss"));
+        const kinds = qf.querySelector('[data-multi="영상 종류"]');
+        if (!body.name || !body.phone || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email || "") || !body.company)
+            return fail("이름·연락처·이메일·업체명을 적어 주세요");
+        if (!body["영상 종류"].length) { kinds.closest(".qf-q").classList.add("qf-miss"); return fail("어떤 영상인지 하나 이상 골라 주세요"); }
+        if (!body.consent) return fail("개인정보 수집·이용에 동의해 주셔야 접수돼요");
+        btn.disabled = true; btn.textContent = "보내는 중…";
+        try {
+            const r = await fetch(SIGNUP_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+            const out = await r.json().catch(() => ({}));
+            if (!r.ok || !out.ok) {
+                return fail(out.error === "limit" ? "잠시 후 다시 눌러 주세요"
+                    : "접수가 안 됐어요 — zzincut@gmail.com 으로 메일 주시면 바로 받을게요");
+            }
+        } catch {
+            return fail("접수가 안 됐어요 — zzincut@gmail.com 으로 메일 주시면 바로 받을게요");
+        }
+        qf.querySelectorAll(".qf-step, .qf-nav, .qf-progress, .qf-count, .qf-submit, .qf-err").forEach((el) => el.style.display = "none");
         document.getElementById("qfDone").hidden = false;
         // 접수가 끝난 뒤에도 「메일로 주셔도 돼요」가 남아 있으면 방금 남긴 사람에게
         // 한 번 더 뭔가 하라는 말로 읽힌다 (2026-08-24 준범 지적)
         const sub = document.getElementById("contactSub");
         if (sub) sub.style.display = "none";
-        // 이 사이트에서 유일하게 「돈이 되는 행동」이다. 전환 목표로 잡을 이벤트
-        ga("generate_lead", { method: "빠른 상담 폼" });
+        // 이 사이트에서 유일하게 「돈이 되는 행동」이다. 이제 저장이 확인된 뒤에만 센다
+        ga("generate_lead", { method: "영상 제작 신청서" });
     });
 }
 
