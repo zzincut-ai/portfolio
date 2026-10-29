@@ -114,7 +114,10 @@ details{margin-top:16px;font-size:14px;color:var(--mute)}details summary{cursor:
 const API = "https://nmnpscbddsydlzsjgoeg.supabase.co/functions/v1/esign";
 const T = location.hash.slice(1);
 const $ = id => document.getElementById(id);
-let SESSION = "", drawn = false, CFG = null, STEP_LIST = [], BLOB = null;
+// 메일 앱 안 브라우저는 인증번호를 보러 메일로 돌아가면 닫힌다 — 같은 기기에서 링크를 다시 누르면 이어지게 세션을 기억한다 (2026-10-30 첫 휴대폰 시험)
+const SKEY = "esign_s_" + T.slice(0, 12);
+function keep(s){ SESSION = s; try{ s ? localStorage.setItem(SKEY, s) : localStorage.removeItem(SKEY); }catch(e){} }
+let SESSION = (()=>{ try{ return localStorage.getItem(SKEY)||""; }catch(e){ return ""; } })(), drawn = false, CFG = null, STEP_LIST = [], BLOB = null;
 async function api(path, body){
   const opt = body===undefined ? {headers: SESSION?{"x-esign-session":SESSION}:{}} : {method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(Object.assign({session:SESSION},body))};
   const r = await fetch(API+"/"+T+path, opt);
@@ -150,8 +153,8 @@ function openFlow(j){
   $("title").textContent = j.signer_name+" 님께 온 계약서"; $("hash").textContent = j.doc_sha256;
   show("sLock", false);
   if(j.require_otp && !j.otp_done){
-    $("mailHint").textContent = j.email_masked+" 로 6자리 번호를 보내요. 10분 안에 넣어 주세요.";
-    steps(CFG.lock?1:0); show("sOtp"); return;
+    $("mailHint").textContent = j.email_masked+" 로 6자리 번호를 보내요. 10분 안에 넣어 주세요. 메일을 확인하러 나갔다가 이 링크를 다시 눌러도 아래 칸에 바로 넣으면 돼요.";
+    steps(CFG.lock?1:0); show("sOtp"); show("otpBox"); return;
   }
   openSign();
 }
@@ -173,17 +176,17 @@ $("lockGo").onclick = async()=>{
   say("mLock","확인하고 있어요…");
   const {ok,j}=await api("/unlock",{value:$("lockIn").value});
   if(!ok) return say("mLock", j.error||"열지 못했어요.", "err");
-  SESSION = j.session; const r = await api("/info"); if(r.ok && r.j.open) openFlow(r.j); else say("mLock","열지 못했어요. 다시 해 주세요.","err");
+  keep(j.session); const r = await api("/info"); if(r.ok && r.j.open) openFlow(r.j); else say("mLock","열지 못했어요. 다시 해 주세요.","err");
 };
 $("sendOtp").onclick = async()=>{
   say("mOtp","보내고 있어요…");
   const {ok,j}=await api("/otp/send",{});
-  if(ok){ show("otpBox"); say("mOtp","번호를 보냈어요. 메일함을 확인해 주세요.","ok"); $("code").focus(); }
+  if(ok){ show("otpBox"); say("mOtp","번호를 보냈어요. 메일함에서 확인한 뒤 이 화면으로 돌아오거나, 메일의 링크를 다시 눌러 넣어 주세요.","ok"); $("code").focus(); }
   else say("mOtp", j.error||"보내지 못했어요.","err");
 };
 $("verifyOtp").onclick = async()=>{
   const {ok,j}=await api("/otp/verify",{code:$("code").value.trim()});
-  if(ok){ SESSION=j.session; openSign(); } else say("mOtp", j.error||"번호가 달라요.","err");
+  if(ok){ keep(j.session); openSign(); } else say("mOtp", j.error||"번호가 달라요.","err");
 };
 const cv=$("pad"), cx=cv.getContext("2d");
 function fit(){ const r=cv.getBoundingClientRect(); if(!r.width) return; const d=window.devicePixelRatio||1; cv.width=r.width*d; cv.height=r.height*d; cx.setTransform(d,0,0,d,0,0); cx.lineWidth=3; cx.lineCap="round"; cx.lineJoin="round"; cx.strokeStyle="#252422"; }
