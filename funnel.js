@@ -380,7 +380,7 @@ if (qf) {
         const f = new FormData(qf);
         const body = { name: f.get("name"), phone: f.get("phone"), email: f.get("email"), company: f.get("company"),
                        note: f.get("note") || "", website: f.get("website") || "", consent: !!f.get("consent"),
-                       consent_version: "v2.5", utm: firstTouch() };
+                       consent_version: "v2.6", utm: firstTouch() };
         qf.querySelectorAll("[data-multi]").forEach((g) => {
             body[g.dataset.multi] = [...g.querySelectorAll("input:checked")].map((i) => i.value);
         });
